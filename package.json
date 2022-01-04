@@ -1,0 +1,19 @@
+{
+  "name": "appeng-lego",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UP2020033/AppEng-Lego.git"
+  },
+  "author": "Joe McNeil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UP2020033/AppEng-Lego/issues"
+  },
+  "homepage": "https://github.com/UP2020033/AppEng-Lego#readme"
+}
