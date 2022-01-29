@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/UP2020033/AppEng-Lego/issues"
   },
-  "homepage": "https://github.com/UP2020033/AppEng-Lego#readme"
+  "homepage": "https://github.com/UP2020033/AppEng-Lego#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
