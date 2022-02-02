@@ -5,7 +5,7 @@ body {
 }
 
 .topBarDiv {
-    background-color: #cfcaca;
+    background-color: #dbdbdb;
     width: 100%;
     height: 60px;
 }
@@ -16,7 +16,6 @@ body {
     width: 100%;
     height: 80px;
     align-items: flex-start;
-    justify-content: space-between;
 }
 
 .bottomBarDiv {
@@ -29,14 +28,20 @@ body {
 
 #logoDiv {
     background-color: #4fa5f0;
-    width: 10%;
+    width: 200px;
     height: 80px;
     align-self: stretch;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    line-height: 80px;
+    color: black;
+    margin-left: 100px;
 }
 
 #homeDiv {
     background-color: #4fa5f0;
-    width: 10%;
+    width: 100px;
     height: 80px;
     float: left;
     font-family: Arial, Helvetica, sans-serif;
@@ -44,12 +49,11 @@ body {
     text-align: center;
     line-height: 80px;
     color: black;
-    font-weight: bold;
 }
 
 #shopDiv {
     background-color: #4fa5f0;
-    width: 10%;
+    width: 100px;
     height: 80px;
     float: left;
     font-family: Arial, Helvetica, sans-serif;
@@ -57,6 +61,7 @@ body {
     text-align: center;
     line-height: 80px;
     color: black;
+    margin-right: 400px;
 }
 
 #basketDiv {
@@ -69,11 +74,42 @@ body {
     text-align: center;
     line-height: 80px;
     color: black;
+    margin-left: 150px;
 }
 
 #searchDiv {
     background-color: #4fa5f0;
-    width: 10%;
+    width: 500px;
     height: 80px;
-    margin-left: auto;
+    margin-left: 200px;
 }
+
+.button {
+    font-size: 10px;
+    box-sizing: border-box;
+    width: 46px;
+    height: 46px;
+
+}
+
+#search {
+    height: 34px;
+    width: 400px;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 200px;
+    border-radius: 15px;
+    border: 1.5px solid rgb(34, 76, 214);
+    background-color: white;
+}
+
+#accountDiv {
+    float: right;
+    margin-right: 110px;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
