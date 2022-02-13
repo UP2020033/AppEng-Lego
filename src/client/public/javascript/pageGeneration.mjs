@@ -1,4 +1,3 @@
-
 export function createDiv(barClass) {
   const newBar = document.createElement('div');
   newBar.className = barClass;
@@ -48,7 +47,3 @@ export function createPage() {
   addMainNavBar();
   addBottomNavBar();
 }
-
-addTopNavBar();
-addMainNavBar();
-addBottomNavBar();
