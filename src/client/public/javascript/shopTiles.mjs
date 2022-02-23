@@ -20,6 +20,13 @@ function appendElems(elemToAppend, appendToElem) {
   elAppendTo.appendChild(elToAppend);
 }
 
+/*
+function appendElems(elemToAppend, appendToElem) {
+  const elAppendTo = document.querySelector(appendToElem);
+  elAppendTo.appendChild(elemToAppend);
+}
+*/
+
 export function createDiv(divClass) {
   const newBar = document.createElement('div');
   newBar.className = divClass;
@@ -82,33 +89,33 @@ createTile();
 
 let items = [
   {
-    'Item Image': '/public/images/DummyImage.jpg',
-    'Item Description': 'Heman Brick 1',
-    'Item Price': '£10',
+    Image: 'DummyImage.jpg',
+    Description: 'Heman Brick 1',
+    Price: '10',
   },
   {
-    'Item Image': 'Image',
-    'Item Description': 'Heman Brick 2',
-    'Item Price': '£10',
+    Image: 'DummyImage.jpg',
+    Description: 'Heman Brick 1',
+    Price: '10',
   },
   {
-    'Item Image': 'Image',
-    'Item Description': 'Heman Brick 3',
-    'Item Price': '£10',
+    Image: 'DummyImage.jpg',
+    Description: 'Heman Brick 1',
+    Price: '10',
   },
   {
-    'Item Image': 'Image',
-    'Item Description': 'Heman Brick 4',
-    'Item Price': '£10',
+    Image: 'DummyImage.jpg',
+    Description: 'Heman Brick 1',
+    Price: '10',
   },
   {
-    'Item Image': 'Image',
-    'Item Description': 'Heman Brick 5',
-    'Item Price': '£10',
+    Image: 'DummyImage.jpg',
+    Description: 'Heman Brick 1',
+    Price: '10',
   },
   {
-    'Item Image': 'Image',
-    'Item Description': 'Heman Brick 6',
-    'Item Price': '£10',
+    Image: 'DummyImage.jpg',
+    Description: 'Heman Brick 1',
+    Price: '10',
   },
 ];
