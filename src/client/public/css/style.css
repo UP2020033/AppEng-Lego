@@ -230,3 +230,15 @@ a:hover {
     cursor: hand;
     cursor: pointer;
 }
+
+.descriptionText {
+    margin: 0;
+}
+
+.priceText {
+    margin: 0;
+}
+
+.addItemToBagText {
+    margin: 0;
+}

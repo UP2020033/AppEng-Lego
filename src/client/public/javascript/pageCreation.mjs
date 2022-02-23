@@ -1,6 +1,6 @@
-export function createDiv(barClass) {
+export function createDiv(divClass) {
   const newBar = document.createElement('div');
-  newBar.className = barClass;
+  newBar.className = divClass;
   return newBar;
 }
 
