@@ -11,6 +11,7 @@ function createParagraph(content, pClass) {
   const newPara = document.createElement('p');
   newPara.textContent = content;
   newPara.classList.add(pClass);
+  return newPara;
 }
 
 function appendElems(elemToAppend, appendToElem) {
@@ -34,7 +35,7 @@ function createTile(id, description, image, price) {
   newItem.id = `item: ${id}`;
 
   createImage(image, 'itemImage');
-  appendElems(newItem, 'itemImage');
+  appendElems(newItem, '.itemImage');
 
   /*
   const itemImage = document.createElement('img');
@@ -45,24 +46,39 @@ function createTile(id, description, image, price) {
 
   pageCreate.createDiv('itemDescription');
   createParagraph(description, 'descriptionText');
-  appendElems(newItem, 'itemDescription');
-  appendElems('itemDescription', 'descriptionText');
+  appendElems('.itemDescription', newItem);
+  appendElems('.descriptionText', '.itemDescription');
 
+  /*
   const itemDescriptionText = document.createElement('p');
   newItem.appendChild(itemDescriptionText);
   itemDescriptionText.textContent = description;
+  */
 
+  pageCreate.createDiv('itemPrice');
+  createParagraph(price, 'itemPriceText');
+  appendElems('.itemPrice', newItem);
+  appendElems('.itemPriceText', '.itemPrice');
+
+  /*
   const itemPrice = document.createElement('div');
   newItem.appendChild(itemPrice);
   itemPrice.className = 'itemPrice';
+
 
   const itemPriceText = document.createElement('p');
   itemPrice.appendChild(itemPriceText);
   itemPriceText.textContent = price;
 
-  const addToBasket = document.createElement('div');
-  newItem.appendChild(addToBasket);
+  */
+
+  pageCreate.createDiv('addItemToBag');
+  createParagraph('addItemToBagText', 'Add to Basket');
+  appendElems('.addItemToBag', newItem);
+  appendElems('.addItemToBagText', '.additemToBagText');
 }
+
+createTile();
 
 let items = [
   {
