@@ -4,6 +4,7 @@ function createImage(imgSource, imgClass) {
   const newImage = document.createElement('img');
   newImage.src = imgSource;
   newImage.classList.add(imgClass);
+  console.log(newImage);
   return newImage;
 }
 
@@ -13,19 +14,6 @@ function createParagraph(content, pClass) {
   newPara.classList.add(pClass);
   return newPara;
 }
-
-function appendElems(elemToAppend, appendToElem) {
-  const elToAppend = document.querySelector(elemToAppend);
-  const elAppendTo = document.querySelector(appendToElem);
-  elAppendTo.appendChild(elToAppend);
-}
-
-/*
-function appendElems(elemToAppend, appendToElem) {
-  const elAppendTo = document.querySelector(appendToElem);
-  elAppendTo.appendChild(elemToAppend);
-}
-*/
 
 export function createDiv(divClass) {
   const newBar = document.createElement('div');
@@ -41,51 +29,26 @@ function createTile(id, description, image, price) {
   newItem.classList.add('item');
   newItem.id = `item: ${id}`;
 
-  createImage(image, 'itemImage');
-  appendElems(newItem, '.itemImage');
+  const newImage = createImage(image, 'itemImage');
+  newItem.appendChild(newImage);
 
-  /*
-  const itemImage = document.createElement('img');
-  newItem.appendChild(itemImage);
-  itemImage.src = `${image}`;
-  itemImage.className = 'itemImage';
-  */
+  const newItemDesc = createDiv('itemDescription');
+  const newItemDescText = createParagraph(description, 'descriptionText');
+  newItem.appendChild(newItemDesc);
+  newItemDesc.appendChild(newItemDescText);
 
-  pageCreate.createDiv('itemDescription');
-  createParagraph(description, 'descriptionText');
-  appendElems('.itemDescription', newItem);
-  appendElems('.descriptionText', '.itemDescription');
-
-  /*
-  const itemDescriptionText = document.createElement('p');
-  newItem.appendChild(itemDescriptionText);
-  itemDescriptionText.textContent = description;
-  */
-
-  pageCreate.createDiv('itemPrice');
-  createParagraph(price, 'itemPriceText');
-  appendElems('.itemPrice', newItem);
-  appendElems('.itemPriceText', '.itemPrice');
-
-  /*
-  const itemPrice = document.createElement('div');
+  const itemPrice = pageCreate.createDiv('itemPrice');
+  const itemPriceText = createParagraph(price, 'itemPriceText');
   newItem.appendChild(itemPrice);
-  itemPrice.className = 'itemPrice';
-
-
-  const itemPriceText = document.createElement('p');
   itemPrice.appendChild(itemPriceText);
-  itemPriceText.textContent = price;
 
-  */
-
-  pageCreate.createDiv('addItemToBag');
-  createParagraph('addItemToBagText', 'Add to Basket');
-  appendElems('.addItemToBag', newItem);
-  appendElems('.addItemToBagText', '.additemToBagText');
+  const addToBag = pageCreate.createDiv('addItemToBag');
+  const addToBagText = createParagraph('Add to Basket', 'addItemToBag');
+  newItem.appendChild(addToBag);
+  addToBag.appendChild(addToBagText);
 }
 
-createTile();
+createTile('1', 'Test', '../public/images/DummyImage.jpg', '£1');
 
 let items = [
   {
