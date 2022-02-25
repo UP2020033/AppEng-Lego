@@ -26,8 +26,6 @@ function createTile(id, description, image, price) {
   addToBag.appendChild(addToBagText);
 }
 
-createTile('1', 'Test', '../public/images/DummyImage.jpg', '£1');
-
 function addTiles() {
   for (const param of items) {
     console.log(param);
