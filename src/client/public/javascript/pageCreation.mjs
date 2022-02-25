@@ -12,6 +12,22 @@ export function createHyperlink(text, link) {
   return navAnchor;
 }
 
+export function createImage(imgSource, imgClass) {
+  const newImage = document.createElement('img');
+  newImage.src = imgSource;
+  newImage.classList.add(imgClass);
+  console.log(newImage);
+  return newImage;
+}
+
+export function createParagraph(content, pClass) {
+  const newPara = document.createElement('p');
+  newPara.textContent = content;
+  newPara.classList.add(pClass);
+  return newPara;
+}
+
+
 export function addSearchField(text, id, name) {
   const searchField = document.createElement('input');
   searchField.placeholder = text;
