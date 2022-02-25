@@ -27,7 +27,6 @@ export function createParagraph(content, pClass) {
   return newPara;
 }
 
-
 export function addSearchField(text, id, name) {
   const searchField = document.createElement('input');
   searchField.placeholder = text;

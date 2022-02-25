@@ -1,6 +1,11 @@
 // Importing express module
 const express = require('express');
 
+const path = require('path');
+const url = require('url');
+const config = require('./auth0-config.mjs');
+
+
 // Creating the express.js server
 const app = express();
 
