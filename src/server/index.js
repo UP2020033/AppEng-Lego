@@ -1,9 +1,9 @@
 // Importing express module
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import url from 'url';
 
-const path = require('path');
-const url = require('url');
-const config = require('./auth0-config.mjs');
+import authConfig from './auth-config.js';
 
 
 // Creating the express.js server
@@ -12,8 +12,16 @@ const app = express();
 // Enable serving for static pages
 app.use(express.static('../client'));
 
+// Serving the auth config
+app.get('/auth-config', (req, res) => {
+  res.json(authConfig);
+});
+
 // Variable to store the port value
 const portListenOn = 8080;
+
+// this will serve the files present in static/ inside this stage
+app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../static')));
 
 // Listen on port
 function serverStart(portListenOn, error) {
