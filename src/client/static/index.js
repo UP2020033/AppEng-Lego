@@ -32,8 +32,7 @@ async function updateAuthUI() {
     const user = await auth0.getUser();
     const el = document.getElementById('greeting');
     el.textContent = `Hello ${user.name} (${user.email})!`;
-    console.log(`Hello ${user.name} (${user.email})!`);
-  } else console.log('user not logged in');
+  }
 }
 
 async function login() {
