@@ -1,4 +1,4 @@
 export default {
-  domain: 'app-eng-lego.eu.auth0.com',
-  clientId: 'ws87Ua3rvtTVDTy22Q1CNtV2ijrcFHD4',
+  domain: 'dev-q2za4ish.us.auth0.com',
+  clientId: '0rEOs4TWW3huqCXKwzJ6Tnbpcah6fDen',
 };

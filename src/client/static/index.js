@@ -23,6 +23,8 @@ async function initializeAuth0Client() {
 async function updateAuthUI() {
   const isAuthenticated = await auth0.isAuthenticated();
 
+  alert('Hello! I am an alert box!!');
+
   document.getElementById('login').disabled = isAuthenticated;
   document.getElementById('logout').disabled = !isAuthenticated;
 
@@ -30,7 +32,8 @@ async function updateAuthUI() {
     const user = await auth0.getUser();
     const el = document.getElementById('greeting');
     el.textContent = `Hello ${user.name} (${user.email})!`;
-  }
+    console.log(`Hello ${user.name} (${user.email})!`);
+  } else console.log('user not logged in');
 }
 
 async function login() {
