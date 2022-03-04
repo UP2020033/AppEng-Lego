@@ -10,7 +10,7 @@ import authConfig from './auth-config.js';
 const app = express();
 
 // Enable serving for static pages
-app.use(express.static('../client'));
+// app.use(express.static('../client'));
 
 // Serving the auth config
 app.get('/auth-config', (req, res) => {
@@ -21,7 +21,7 @@ app.get('/auth-config', (req, res) => {
 const portListenOn = 8080;
 
 // this will serve the files present in static/ inside this stage
-app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../static')));
+app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../client')));
 
 // Listen on port
 function serverStart(portListenOn, error) {
