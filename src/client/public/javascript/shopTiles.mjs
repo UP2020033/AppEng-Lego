@@ -1,5 +1,27 @@
 import * as pageCreate from './pageCreation.mjs';
 
+const mainSection = document.querySelector('.mainSection');
+
+const containerFBox = document.createElement('div');
+containerFBox.classList.add('containerFBox');
+mainSection.appendChild(containerFBox);
+console.log(containerFBox);
+
+const categoryBox = document.createElement('div');
+categoryBox.classList.add('categoryBox');
+containerFBox.appendChild(categoryBox);
+
+const newBox = document.createElement('div');
+newBox.classList.add('mainShopBox');
+containerFBox.appendChild(newBox);
+
+const categoryReset = document.createElement('div');
+categoryReset.id = 'categoryReset';
+categoryBox.appendChild(categoryReset);
+
+const categoryListDiv = document.createElement('div');
+categoryListDiv.classList.add('category');
+
 function createTile(id, description, image, price) {
   const selectContainer = document.querySelector('.mainShopBox');
   const newItem = document.createElement('div');
@@ -65,5 +87,6 @@ const items = [
     price: '10',
   },
 ];
+
 
 addTiles();
