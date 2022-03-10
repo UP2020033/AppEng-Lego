@@ -20,6 +20,14 @@ export function createImage(imgSource, imgClass) {
   return newImage;
 }
 
+export function createButton(buttonId, buttonClass, text) {
+  const newButton = document.createElement('button');
+  newButton.classList.add(buttonClass);
+  newButton.id = buttonId;
+  newButton.textContent = text;
+  return newButton;
+}
+
 export function createParagraph(content, pClass) {
   const newPara = document.createElement('p');
   newPara.textContent = content;
@@ -37,8 +45,8 @@ export function addSearchField(text, id, name) {
 
 export function addTopNavBar() {
   document.querySelector('.mainSection').appendChild(createDiv('topBarDiv'));
-  document.querySelector('.topBarDiv').appendChild(createDiv('accountDiv'));
-  document.querySelector('.accountDiv').appendChild(createHyperlink('My Account', 'account/index.html'));
+  document.querySelector('.topBarDiv').appendChild(createButton('login', 'button', 'Login'));
+  document.querySelector('.topBarDiv').appendChild(createButton('logout', 'button', 'Logout'));
 }
 
 export function addMainNavBar() {

@@ -12,18 +12,18 @@ let auth0 = null;
 
 async function initializeAuth0Client() {
   const config = await fetchAuthConfig();
-
+  // eslint-disable-next-line no-undef
   auth0 = await createAuth0Client({
     domain: config.domain,
     client_id: config.clientId,
+    audience: config.audience,
   });
+  return auth0;
 }
 
 // update the state of all authentication-related elements
 async function updateAuthUI() {
   const isAuthenticated = await auth0.isAuthenticated();
-
-  alert('Hello! I am an alert box!!');
 
   document.getElementById('login').disabled = isAuthenticated;
   document.getElementById('logout').disabled = !isAuthenticated;
