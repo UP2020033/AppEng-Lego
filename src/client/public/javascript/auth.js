@@ -18,7 +18,6 @@ async function initializeAuth0Client() {
     client_id: config.clientId,
     audience: config.audience,
   });
-  return auth0;
 }
 
 // update the state of all authentication-related elements
@@ -50,14 +49,14 @@ function logout() {
 // check for the code and state parameters from Auth0 login redirect
 async function handleAuth0Redirect() {
   const isAuthenticated = await auth0.isAuthenticated();
-
+  console.log(auth0);
   if (isAuthenticated) return;
 
   const query = window.location.search;
   if (query.includes('state=')) {
     try {
     // process the login state
-      await auth0.handleRedirectCallBack();
+      await auth0.handleRedirectCallback();
     } catch (e) {
       window.alert(e.message || 'authentication error');
       logout();
