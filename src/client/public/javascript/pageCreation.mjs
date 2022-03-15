@@ -28,10 +28,11 @@ export function createButton(buttonId, buttonClass, text) {
   return newButton;
 }
 
-export function createParagraph(content, pClass) {
+export function createParagraph(content, pClass, pId) {
   const newPara = document.createElement('p');
   newPara.textContent = content;
   newPara.classList.add(pClass);
+  newPara.id = pId;
   return newPara;
 }
 
@@ -41,6 +42,14 @@ export function addSearchField(text, id, name) {
   searchField.id = id;
   searchField.name = name;
   return searchField;
+}
+
+export function addingEventListener() {
+  const div = document.querySelector('#homeLink');
+  div.addEventListener('click', () => {
+    document.location.replace('../index.html');
+    console.log(document.location);
+  });
 }
 
 export function addTopNavBar() {
@@ -53,11 +62,11 @@ export function addMainNavBar() {
   document.querySelector('.mainSection').appendChild(createDiv('mainBarDiv'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('logoDiv'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('homeDiv'));
-  document.querySelector('.homeDiv').appendChild(createHyperlink('Home', '../index.html'));
+  document.querySelector('.homeDiv').appendChild(createParagraph('Home', 'navLink', 'homeLink'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('shopDiv'));
-  document.querySelector('.shopDiv').appendChild(createHyperlink('Shop', 'store/index.html'));
+  document.querySelector('.shopDiv').appendChild(createParagraph('Shop', 'navLink', 'shopLink'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('searchDiv'));
-  document.querySelector('.searchDiv').appendChild(addSearchField('Search for an item...', 'search', 'search'));
+  // document.querySelector('.searchDiv').appendChild(addSearchField('Search for an item...', 'search', 'search'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('basketDiv'));
 }
 
@@ -69,4 +78,5 @@ export function createPage() {
   addTopNavBar();
   addMainNavBar();
   addBottomNavBar();
+  addingEventListener();
 }

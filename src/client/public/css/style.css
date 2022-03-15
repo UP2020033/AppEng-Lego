@@ -255,3 +255,14 @@ a:hover {
 .addItemToBagText {
     margin: 0;
 }
+
+.navLink {
+    margin: auto;
+}
+
+.navLink:hover {
+    margin: auto;
+    color: white;
+    cursor: hand;
+    cursor: pointer;
+}
