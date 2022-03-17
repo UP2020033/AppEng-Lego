@@ -44,21 +44,21 @@ export function addSearchField(text, id, name) {
   return searchField;
 }
 
-export function addNavigationEventListeners() {
+export function addNavBarEventListeners() {
   const navElems = document.querySelectorAll('.navLink');
   console.log(navElems);
   for (const link of navElems) {
     if (link.id === 'homeLink') {
       link.addEventListener('click', () => {
-        document.location.href = 'http://localhost:8080/index.html';
+        document.location.href = 'http://localhost:8080';
       });
     } else if (link.id === 'shopLink') {
       link.addEventListener('click', () => {
-        document.location.href = 'http://localhost:8080/store/index.html';
+        document.location.href = 'http://localhost:8080/store';
       });
     } else {
       link.addEventListener('click', () => {
-        document.location.href = 'http://localhost:8080/basket/index.html';
+        document.location.href = 'http://localhost:8080/basket';
       });
     }
   }
@@ -73,13 +73,18 @@ export function addTopNavBar() {
 export function addMainNavBar() {
   document.querySelector('.mainSection').appendChild(createDiv('mainBarDiv'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('logoDiv'));
+  document.querySelector('.logoDiv').appendChild(createParagraph('BlockZilla', 'logoLink', 'logoLink'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('homeDiv'));
   document.querySelector('.homeDiv').appendChild(createParagraph('Home', 'navLink', 'homeLink'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('shopDiv'));
   document.querySelector('.shopDiv').appendChild(createParagraph('Shop', 'navLink', 'shopLink'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('searchDiv'));
-  // document.querySelector('.searchDiv').appendChild(addSearchField('Search for an item...', 'search', 'search'));
+  document.querySelector('.searchDiv').appendChild(addSearchField('Search for an item...', 'search', 'search'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('basketDiv'));
+  document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'basket'));
+  document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
+  const div = document.querySelector('.basketDiv');
+  console.log(div.childNodes);
 }
 
 export function addBottomNavBar() {
@@ -90,5 +95,5 @@ export function createPage() {
   addTopNavBar();
   addMainNavBar();
   addBottomNavBar();
-  addNavigationEventListeners();
+  addNavBarEventListeners();
 }

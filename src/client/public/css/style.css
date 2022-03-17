@@ -66,7 +66,7 @@ body {
 
 .basketDiv {
     background-color: #AFD5EB;
-    width: 100px;
+    width: 200px;
     height: 70px;
     float: right;
     font-family: Arial, Helvetica, sans-serif;
@@ -81,23 +81,37 @@ body {
     background-color: #AFD5EB;
     width: 500px;
     height: 70px;
-    margin-left: 150px;
 }
 
-.button {
+#login {
     background-color: #a19f9d;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 15px;
     width: 100px;
     height: 30px;
-    margin-left: 1600px;
+    margin-left: 1400px;
     margin-top: 12px;
+    margin-right: 10px;
     cursor: hand;
     cursor: pointer;
     border: 5px;
     border-radius: 10px;
 }
+
+#logout {
+    background-color: #a19f9d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    width: 100px;
+    height: 30px;
+    cursor: hand;
+    cursor: pointer;
+    border: 5px;
+    border-radius: 10px;
+}
+
 
 .button:hover {
     border: 1px;
@@ -265,4 +279,36 @@ a:hover {
     color: white;
     cursor: hand;
     cursor: pointer;
+}
+
+.basket {
+    margin-top: 15px;
+    margin-right: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.basket:hover {
+    cursor: hand;
+    cursor: pointer;
+}
+
+.logoLink {
+    margin: auto;
+    font-weight: bold;
+}
+
+.logoLink:hover {
+    cursor: hand;
+    cursor: pointer;
+}
+
+.basketQuantity {
+    margin: 0;
+    margin-right: 0;
+    width: 10px;
+    height: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
 }
