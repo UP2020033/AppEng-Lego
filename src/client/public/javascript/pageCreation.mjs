@@ -44,12 +44,24 @@ export function addSearchField(text, id, name) {
   return searchField;
 }
 
-export function addingEventListener() {
-  const div = document.querySelector('#homeLink');
-  div.addEventListener('click', () => {
-    document.location.replace('../index.html');
-    console.log(document.location);
-  });
+export function addNavigationEventListeners() {
+  const navElems = document.querySelectorAll('.navLink');
+  console.log(navElems);
+  for (const link of navElems) {
+    if (link.id === 'homeLink') {
+      link.addEventListener('click', () => {
+        document.location.href = 'http://localhost:8080/index.html';
+      });
+    } else if (link.id === 'shopLink') {
+      link.addEventListener('click', () => {
+        document.location.href = 'http://localhost:8080/store/index.html';
+      });
+    } else {
+      link.addEventListener('click', () => {
+        document.location.href = 'http://localhost:8080/basket/index.html';
+      });
+    }
+  }
 }
 
 export function addTopNavBar() {
@@ -78,5 +90,5 @@ export function createPage() {
   addTopNavBar();
   addMainNavBar();
   addBottomNavBar();
-  addingEventListener();
+  addNavigationEventListeners();
 }
