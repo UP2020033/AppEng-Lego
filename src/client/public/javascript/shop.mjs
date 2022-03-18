@@ -1,35 +1,60 @@
 import * as pageCreate from './pageCreation.mjs';
 
-const mainSection = document.querySelector('.mainSection');
+export function addContainer() {
+  const mainSection = document.querySelector('.mainSection');
+  const containerFBox = document.createElement('div');
+  containerFBox.classList.add('containerFBox');
+  mainSection.appendChild(containerFBox);
+}
 
-const containerFBox = document.createElement('div');
-containerFBox.classList.add('containerFBox');
-mainSection.appendChild(containerFBox);
-console.log(containerFBox);
+export function addCategoryBox() {
+  const categoryBox = document.createElement('div');
+  const containerFBox = document.querySelector('.containerFBox');
+  categoryBox.classList.add('categoryBox');
+  containerFBox.appendChild(categoryBox);
+}
 
-const categoryBox = document.createElement('div');
-categoryBox.classList.add('categoryBox');
-containerFBox.appendChild(categoryBox);
+export function addShopItemBox() {
+  const newBox = document.createElement('div');
+  const containerFBox = document.querySelector('.containerFBox');
+  newBox.classList.add('mainShopBox');
+  containerFBox.appendChild(newBox);
+}
 
-const newBox = document.createElement('div');
-newBox.classList.add('mainShopBox');
-containerFBox.appendChild(newBox);
+export function addCategoryFilter() {
+  const categoryReset = document.createElement('div');
+  const categoryBox = document.querySelector('.categoryBox');
+  categoryReset.id = 'categoryReset';
+  categoryBox.appendChild(categoryReset);
 
-const categoryReset = document.createElement('div');
-categoryReset.id = 'categoryReset';
-categoryBox.appendChild(categoryReset);
+  const categoryListDiv = document.createElement('div');
+  categoryListDiv.classList.add('category');
+}
 
-const categoryListDiv = document.createElement('div');
-categoryListDiv.classList.add('category');
+export function addShopContent() {
+  addContainer();
+  addCategoryBox();
+  addShopItemBox();
+  addCategoryFilter();
+}
+
+function addTileListeners() {
+  const image = document.querySelector('.itemImage');
+  image.addEventListener('click', () => {
+    document.location.href = 'http://localhost:8080/item';
+    console.log(image);
+  });
+}
 
 function createTile(id, description, image, price) {
   const selectContainer = document.querySelector('.mainShopBox');
   const newItem = document.createElement('div');
   selectContainer.appendChild(newItem);
   newItem.classList.add('item');
-  newItem.id = `item: ${id}`;
+  newItem.id = `item:${id}`;
 
   const newImage = pageCreate.createImage(image, 'itemImage');
+  newImage.id = `image:${id}`;
   newItem.appendChild(newImage);
 
   const newItemDesc = pageCreate.createDiv('itemDescription');
@@ -50,8 +75,8 @@ function createTile(id, description, image, price) {
 
 function addTiles() {
   for (const param of items) {
-    console.log(param);
     createTile('1', param.description, param.image, param.price);
+    addTileListeners();
   }
 }
 
@@ -88,5 +113,5 @@ const items = [
   },
 ];
 
-
+addShopContent();
 addTiles();
