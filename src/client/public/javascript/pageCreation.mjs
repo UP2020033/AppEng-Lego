@@ -1,3 +1,5 @@
+// functions to create different elements - saves me repeating some code..
+
 export function createDiv(divClass) {
   const newBar = document.createElement('div');
   newBar.className = divClass;
@@ -44,6 +46,8 @@ export function addSearchField(text, id, name) {
   return searchField;
 }
 
+// Adding event listeners for the navigation bar.
+
 export function addNavBarEventListeners() {
   const navElems = document.querySelectorAll('.navLink');
   console.log(navElems);
@@ -63,6 +67,8 @@ export function addNavBarEventListeners() {
     }
   }
 }
+
+// Appending the necessary elements to their parents
 
 export function addTopNavBar() {
   document.querySelector('.mainSection').appendChild(createDiv('topBarDiv'));
