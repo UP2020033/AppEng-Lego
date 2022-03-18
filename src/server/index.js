@@ -24,6 +24,7 @@ const portListenOn = 8080;
 // app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../client')));
 app.use(express.static('../client/'));
 
+
 // Listen on port
 function serverStart(portListenOn, error) {
   app.listen(portListenOn);
