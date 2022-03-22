@@ -59,6 +59,15 @@ function addTileListeners() {
   }
 }
 
+async function fetchData() {
+  const response = await fetch('/get-data');
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
+const data = fetchData();
+
 // Creating the 'tile' for each item and appending them.
 
 function createTile(id, description, image, price) {
@@ -91,20 +100,14 @@ function createTile(id, description, image, price) {
 // Looping over the the local array of objects and assigning necessary values.
 
 function addTiles() {
+  const data = fetchData();
   for (const param of items) {
     createTile(param.id, param.description, param.image, param.price);
     addTileListeners();
   }
 }
 
-async function fetchData() {
-  const response = await fetch('../../server/data.js');
-  const array = await response.json();
-  console.log(array);
-}
-
-fetchData();
-
+/*
 const items = [
   {
     id: '1',
@@ -143,6 +146,6 @@ const items = [
     price: '10',
   },
 ];
-
+*/
 addShopContent();
 addTiles();

@@ -2,6 +2,7 @@
 import express from 'express';
 import path from 'path';
 import url from 'url';
+import data from './data.js';
 
 import authConfig from './auth-config.js';
 
@@ -15,6 +16,11 @@ const app = express();
 // Serving the auth config
 app.get('/auth-config', (req, res) => {
   res.json(authConfig);
+});
+
+
+app.get('/get-data', (req, res) => {
+  res.send(data);
 });
 
 // Variable to store the port value

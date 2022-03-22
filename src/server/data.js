@@ -1,4 +1,4 @@
-const items = [
+export default [
   {
     id: '1',
     image: '../public/images/DummyImage.jpg',
