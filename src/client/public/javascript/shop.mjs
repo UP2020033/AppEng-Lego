@@ -66,8 +66,6 @@ async function fetchData() {
   return data;
 }
 
-const data = fetchData();
-
 // Creating the 'tile' for each item and appending them.
 
 function createTile(id, description, image, price) {
@@ -101,51 +99,14 @@ function createTile(id, description, image, price) {
 
 function addTiles() {
   const data = fetchData();
-  for (const param of items) {
-    createTile(param.id, param.description, param.image, param.price);
-    addTileListeners();
-  }
+  data.then(dataObj => {
+    console.log(dataObj);
+    for (const param of dataObj) {
+      createTile(param.id, param.description, param.image, param.price);
+      addTileListeners();
+    }
+  });
 }
 
-/*
-const items = [
-  {
-    id: '1',
-    image: '../public/images/DummyImage.jpg',
-    description: 'Heman Brick 1',
-    price: '10',
-  },
-  {
-    id: '2',
-    image: '../public/images/DummyImage.jpg',
-    description: 'Heman Brick 2',
-    price: '10',
-  },
-  {
-    id: '3',
-    image: '../public/images/DummyImage.jpg',
-    description: 'Heman Brick 3',
-    price: '10',
-  },
-  {
-    id: '4',
-    image: '../public/images/DummyImage.jpg',
-    description: 'Heman Brick 4',
-    price: '10',
-  },
-  {
-    id: '5',
-    image: '../public/images/DummyImage.jpg',
-    description: 'Heman Brick 5',
-    price: '10',
-  },
-  {
-    id: '6',
-    image: '../public/images/DummyImage.jpg',
-    description: 'Heman Brick 6',
-    price: '10',
-  },
-];
-*/
 addShopContent();
 addTiles();
