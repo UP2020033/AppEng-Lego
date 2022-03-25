@@ -312,3 +312,47 @@ a:hover {
     font-weight: bold;
     font-size: 15px;
 }
+
+.itemDetailContainerDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    border: solid black;
+    border-width: thin;
+    background-color: #AFD5EB;
+    width: 1300px;
+    height: 900px;
+    margin-top: 50px;
+    margin-left: 450px;
+}
+
+.imageContainerDiv {
+    display: inline-flex;
+    flex-direction: column;
+    border: solid black;
+    border-width: thin;
+    background-color: white;
+    margin-left: 50px;
+    width: 700px;
+    height: 800px;
+    margin-top: 50px;
+}
+
+.itemDetailsImage {
+    width: 600px;
+    height: 600px;
+    margin: auto;
+}
+
+.itemDetailContentContainer {
+    display: inline-flex;
+    flex-direction: column;
+    border: solid black;
+    border-width: thin;
+    background-color: white;
+    margin-right: 50px;
+    margin-top: 50px;
+    width: 350px;
+    height: 800px;
+}

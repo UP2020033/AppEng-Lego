@@ -53,7 +53,8 @@ function addTileListeners() {
   console.log(images);
   for (const image of images) {
     image.addEventListener('click', () => {
-      document.location.href = 'http://localhost:8080/item';
+      // const itemId = image.id.split(":")[1]
+      document.location.href = 'http://localhost:8080/item'; // `http://localhost:8080/item/?id=itemId'
       console.log(image.parentNode);
     });
   }
