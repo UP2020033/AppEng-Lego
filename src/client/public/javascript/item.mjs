@@ -23,12 +23,21 @@ itemDetailContent.appendChild(itemDescriptionContainer);
 itemDescriptionContainer.appendChild(itemDetailDescText);
 
 const itemPriceContainer = pageCreate.createDiv('itemPriceContainer');
-const itemDetailPriceText = pageCreate.createParagraph('Price', 'itemDetail');
+const itemPriceText = pageCreate.createParagraph('Price', 'itemPriceText');
 itemDetailContent.appendChild(itemPriceContainer);
-itemPriceContainer.appendChild(itemDetailPriceText);
+itemPriceContainer.appendChild(itemPriceText);
 
 const itemDetailQuantity = pageCreate.createDiv('itemQuantityContainer');
+const minusButton = pageCreate.createButton('minusButton', 'button', '-');
+const additionButton = pageCreate.createButton('addButton', 'button', '+');
+const quantityField = pageCreate.createQuantityField('number', 'quantityField', '1');
 itemDetailContent.appendChild(itemDetailQuantity);
+itemDetailQuantity.appendChild(minusButton);
+itemDetailQuantity.appendChild(quantityField);
+itemDetailQuantity.appendChild(additionButton);
+
+const stockStatus = pageCreate.createDiv('stockStatus');
+itemDetailContent.appendChild(stockStatus);
 
 const itemAddToBasket = pageCreate.createDiv('itemAddToBasket');
 itemDetailContent.appendChild(itemAddToBasket);

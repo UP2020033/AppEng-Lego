@@ -38,12 +38,20 @@ export function createParagraph(content, pClass, pId) {
   return newPara;
 }
 
-export function addSearchField(text, id, name) {
+export function createSearchField(text, id, name) {
   const searchField = document.createElement('input');
   searchField.placeholder = text;
   searchField.id = id;
   searchField.name = name;
   return searchField;
+}
+
+export function createQuantityField(inputType, id, defaultValue) {
+  const inputField = document.createElement('input');
+  inputField.type = inputType;
+  inputField.value = defaultValue;
+  inputField.id = id;
+  return inputField;
 }
 
 // Adding event listeners for the navigation bar.
@@ -85,7 +93,7 @@ export function addMainNavBar() {
   document.querySelector('.mainBarDiv').appendChild(createDiv('shopDiv'));
   document.querySelector('.shopDiv').appendChild(createParagraph('Shop', 'navLink', 'shopLink'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('searchDiv'));
-  document.querySelector('.searchDiv').appendChild(addSearchField('Search for an item...', 'search', 'search'));
+  document.querySelector('.searchDiv').appendChild(createSearchField('Search for an item...', 'search', 'search'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('basketDiv'));
   document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'basket'));
   document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
