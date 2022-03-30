@@ -5,12 +5,23 @@ import * as pageCreate from './pageCreation.mjs';
 //
 // )
 
-const mainSection = document.querySelector('.mainSection');
-const containerDiv = pageCreate.createDiv('itemDetailContainerDiv');
-mainSection.appendChild(containerDiv);
+function additemDetailsPage() {
+  document.querySelector('.mainSection').appendChild(pageCreate.createDiv('itemDetailContainerDiv'));
+  document.querySelector('.itemDetailContainerDiv').appendChild(pageCreate.createDiv('imageContainerDiv'));
+  document.querySelector('.itemDetailContainerDiv').appendChild(pageCreate.createDiv('itemDetailContentContainer'));
+}
 
-const imageContainerDiv = pageCreate.createDiv('imageContainerDiv');
-containerDiv.appendChild(imageContainerDiv);
+additemDetailsPage();
+
+/*
+function addItem() {
+  document.querySelector('.imageContainerDiv').appendChild()
+}
+*/
+
+// const imageContainerDiv = pageCreate.createDiv('imageContainerDiv');
+// const containerDiv = document.querySelector('itemDetailContainerDiv');
+// containerDiv.appendChild(imageContainerDiv);
 const itemDetailImage = pageCreate.createImage('../public/images/legoBonzaiTree.jpg', 'itemDetailsImage');
 imageContainerDiv.appendChild(itemDetailImage);
 
@@ -41,3 +52,21 @@ itemDetailContent.appendChild(stockStatus);
 
 const itemAddToBasket = pageCreate.createDiv('itemAddToBasket');
 itemDetailContent.appendChild(itemAddToBasket);
+
+
+function addQuantityButtons() {
+  const addButton = pageCreate.createButton('addButton', 'button', '+');
+  const minusButton = pageCreate.createButton('minusButton', 'button', '-');
+
+  addButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    quantityField.value = currentValue + 1;
+  });
+
+  minusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    quantityField.value = currentValue + 1;
+  });
+}

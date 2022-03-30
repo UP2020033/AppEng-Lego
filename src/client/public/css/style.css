@@ -385,16 +385,22 @@ a:hover {
 }
 
 #quantityField {
-    height: 50px;
-    width: 100px;
+    height: 44px;
+    width: 92px;
     text-align: center;
 }
 
 #minusButton {
     height: 50px;
     width: 25px;
-    margin-left: 50px;
+    margin-left: 100px;
 }
+
+#addButton {
+    height: 50px;
+    width: 25px;
+}
+
 
 .stockStatus {
     display: flex;

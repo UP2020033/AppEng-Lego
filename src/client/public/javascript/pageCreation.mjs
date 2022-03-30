@@ -54,6 +54,32 @@ export function createQuantityField(inputType, id, defaultValue) {
   return inputField;
 }
 
+/*
+export function addElement(elemType, className, id, text, imgSource, appendTo) {
+  const newElem = document.createElement(elemType);
+  switch (newElem) {
+    case id !== '':
+      newElem.id = id;
+      break;
+    case className !== '':
+      newElem.classList.add(className);
+      break;
+    case text !== '':
+      newElem.textContent = `${text}`;
+      break;
+    case elemType === 'a':
+      newElem.href = imgSource;
+      break;
+    case elemType === 'img':
+      newElem.src = imgSource;
+      break;
+  }
+  appendTo.appendChild(newElem);
+}
+
+addElement('p', 'testClass', '1234', 'hi', 'Im an image', '.mainSection');
+*/
+
 // Adding event listeners for the navigation bar.
 
 export function addNavBarEventListeners() {
