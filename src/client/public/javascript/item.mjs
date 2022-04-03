@@ -4,24 +4,29 @@ import * as pageCreate from './pageCreation.mjs';
 // fetch url pass id into fetch}
 //
 // )
+const mainSection = document.querySelector('.mainSection');
 
-function additemDetailsPage() {
-  document.querySelector('.mainSection').appendChild(pageCreate.createDiv('itemDetailContainerDiv'));
-  document.querySelector('.itemDetailContainerDiv').appendChild(pageCreate.createDiv('imageContainerDiv'));
-  document.querySelector('.itemDetailContainerDiv').appendChild(pageCreate.createDiv('itemDetailContentContainer'));
+export function addElement(elementType, classValue, idValue, txtContent, imgSource, appendTo) {
+  const newElement = document.createElement(elementType);
+  if (classValue !== null) newElement.className = classValue;
+  if (idValue !== null) newElement.id = idValue;
+  if (txtContent !== null) newElement.textContent = `${txtContent}`;
+  if (elementType === 'a') newElement.href = imgSource;
+  if (elementType === 'img') {
+    newElement.src = imgSource;
+  }
+  appendTo.append(newElement);
+  console.log(newElement);
+  return newElement;
 }
 
-additemDetailsPage();
+addElement('p', 'testClass', '1234', 'hi', 'Im an image', mainSection);
 
-/*
-function addItem() {
-  document.querySelector('.imageContainerDiv').appendChild()
-}
-*/
+const containerDiv = pageCreate.createDiv('itemDetailContainerDiv');
+mainSection.appendChild(containerDiv);
 
-// const imageContainerDiv = pageCreate.createDiv('imageContainerDiv');
-// const containerDiv = document.querySelector('itemDetailContainerDiv');
-// containerDiv.appendChild(imageContainerDiv);
+const imageContainerDiv = pageCreate.createDiv('imageContainerDiv');
+containerDiv.appendChild(imageContainerDiv);
 const itemDetailImage = pageCreate.createImage('../public/images/legoBonzaiTree.jpg', 'itemDetailsImage');
 imageContainerDiv.appendChild(itemDetailImage);
 

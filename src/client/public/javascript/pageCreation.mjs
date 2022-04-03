@@ -54,31 +54,20 @@ export function createQuantityField(inputType, id, defaultValue) {
   return inputField;
 }
 
-/*
-export function addElement(elemType, className, id, text, imgSource, appendTo) {
-  const newElem = document.createElement(elemType);
-  switch (newElem) {
-    case id !== '':
-      newElem.id = id;
-      break;
-    case className !== '':
-      newElem.classList.add(className);
-      break;
-    case text !== '':
-      newElem.textContent = `${text}`;
-      break;
-    case elemType === 'a':
-      newElem.href = imgSource;
-      break;
-    case elemType === 'img':
-      newElem.src = imgSource;
-      break;
-  }
-  appendTo.appendChild(newElem);
-}
 
-addElement('p', 'testClass', '1234', 'hi', 'Im an image', '.mainSection');
-*/
+export function addElement(elementType, classValue, idValue, txtContent, imgSource, appendTo) {
+  const newElement = document.createElement(elementType);
+  if (classValue !== null) newElement.className = classValue;
+  if (idValue !== null) newElement.id = idValue;
+  if (txtContent !== null) newElement.textContent = `${txtContent}`;
+  if (elementType === 'a') newElement.href = imgSource;
+  if (elementType === 'img') {
+    newElement.src = imgSource;
+  }
+  appendTo.append(newElement);
+  console.log(newElement);
+  return newElement;
+}
 
 // Adding event listeners for the navigation bar.
 
@@ -105,26 +94,26 @@ export function addNavBarEventListeners() {
 // Appending the necessary elements to their parents
 
 export function addTopNavBar() {
-  document.querySelector('.mainSection').appendChild(createDiv('topBarDiv'));
-  document.querySelector('.topBarDiv').appendChild(createButton('login', 'button', 'Login'));
-  document.querySelector('.topBarDiv').appendChild(createButton('logout', 'button', 'Logout'));
+  const mainSection = document.querySelector('.mainSection');
+  const topBarDiv = addElement('div', 'topBarDiv', null, null, null, mainSection);
+  addElement('button', 'button', 'login', 'Login', null, topBarDiv);
+  addElement('button', 'button', 'logout', 'Logout', null, topBarDiv);
 }
 
 export function addMainNavBar() {
-  document.querySelector('.mainSection').appendChild(createDiv('mainBarDiv'));
-  document.querySelector('.mainBarDiv').appendChild(createDiv('logoDiv'));
-  document.querySelector('.logoDiv').appendChild(createParagraph('BlockZilla', 'logoLink', 'logoLink'));
-  document.querySelector('.mainBarDiv').appendChild(createDiv('homeDiv'));
-  document.querySelector('.homeDiv').appendChild(createParagraph('Home', 'navLink', 'homeLink'));
-  document.querySelector('.mainBarDiv').appendChild(createDiv('shopDiv'));
-  document.querySelector('.shopDiv').appendChild(createParagraph('Shop', 'navLink', 'shopLink'));
-  document.querySelector('.mainBarDiv').appendChild(createDiv('searchDiv'));
-  document.querySelector('.searchDiv').appendChild(createSearchField('Search for an item...', 'search', 'search'));
-  document.querySelector('.mainBarDiv').appendChild(createDiv('basketDiv'));
-  document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'basket'));
+  const mainSection = document.querySelector('.mainSection');
+  const mainBarDiv = addElement('div', 'mainBarDiv', null, null, null, mainSection);
+  const logoDiv = addElement('div', 'logoDiv', null, null, null, mainBarDiv);
+  addElement('p', 'logoLink', 'logoLink', 'BlockZilla', null, logoDiv);
+  const homeDiv = addElement('div', 'homeDiv', null, null, null, mainBarDiv);
+  addElement('div', 'navLink', 'homeLink', 'Home', null, homeDiv);
+  const shopDiv = addElement('div', 'shopDiv', null, null, null, mainBarDiv);
+  addElement('div', 'navLink', 'shopLink', 'Shop', null, shopDiv);
+  const searchDiv = addElement('div', 'searchDiv', null, null, null, mainBarDiv);
+  searchDiv.append(createSearchField('Search for an item...', 'search', 'search'));
+  const basketDiv = addElement('div', 'basketDiv', null, null, null, mainBarDiv);
+  addElement('img', 'basket', null, null, '../public/images/shoppingcart.png', basketDiv);
   document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
-  const div = document.querySelector('.basketDiv');
-  console.log(div.childNodes);
 }
 
 export function addBottomNavBar() {
