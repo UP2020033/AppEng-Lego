@@ -6,22 +6,6 @@ import * as pageCreate from './pageCreation.mjs';
 // )
 const mainSection = document.querySelector('.mainSection');
 
-export function addElement(elementType, classValue, idValue, txtContent, imgSource, appendTo) {
-  const newElement = document.createElement(elementType);
-  if (classValue !== null) newElement.className = classValue;
-  if (idValue !== null) newElement.id = idValue;
-  if (txtContent !== null) newElement.textContent = `${txtContent}`;
-  if (elementType === 'a') newElement.href = imgSource;
-  if (elementType === 'img') {
-    newElement.src = imgSource;
-  }
-  appendTo.append(newElement);
-  console.log(newElement);
-  return newElement;
-}
-
-addElement('p', 'testClass', '1234', 'hi', 'Im an image', mainSection);
-
 const containerDiv = pageCreate.createDiv('itemDetailContainerDiv');
 mainSection.appendChild(containerDiv);
 
