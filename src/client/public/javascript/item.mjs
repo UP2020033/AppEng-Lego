@@ -4,48 +4,31 @@ import * as pageCreate from './pageCreation.mjs';
 // fetch url pass id into fetch}
 //
 // )
-const mainSection = document.querySelector('.mainSection');
 
-const containerDiv = pageCreate.createDiv('itemDetailContainerDiv');
-mainSection.appendChild(containerDiv);
+function itemPageInitialLoad() {
+  const mainSection = document.querySelector('.mainSection');
+  const containerDiv = pageCreate.addElement('div', 'itemDetailContainerDiv', null, null, null, null, null, mainSection);
+  const imageContainerDiv = pageCreate.addElement('div', 'imageContainerDiv', null, null, null, null, null, containerDiv);
+  pageCreate.addElement('img', 'itemDetailsImage', null, null, '../public/images/legoBonzaiTree.jpg', null, null, imageContainerDiv);
+  const itemDetailContent = pageCreate.addElement('div', 'itemDetailContentContainer', null, null, null, null, null, containerDiv);
+  const itemDescriptionContainer = pageCreate.addElement('div', 'itemDescriptionContainer', null, null, null, null, null, itemDetailContent);
+  pageCreate.addElement('p', 'itemDetailDescText', null, 'Description', null, null, null, itemDescriptionContainer);
+  const itemPriceContainer = pageCreate.addElement('div', 'itemPriceContainer', null, null, null, null, null, itemDetailContent);
+  const itemPriceText = pageCreate.addElement('p', 'itemPriceText', null, 'Price', null, null, null, itemPriceContainer);
+  const itemDetailQuantity = pageCreate.addElement('div', 'itemQuantityContainer', null, null, null, null, null, itemDetailContent);
+  const minusButton = pageCreate.addElement('button', 'button', 'minusButton', '-', null, null, null, itemDetailQuantity);
+  const quantityField = pageCreate.addElement('input', null, 'quantityField', '1', null, 'number', '1', itemDetailQuantity);
+  const additionButton = pageCreate.addElement('button', 'button', 'addButton', '+', null, null, null, itemDetailQuantity);
+  const stockStatus = pageCreate.addElement('div', 'stockStatus', null, null, null, null, null, itemDetailContent);
+  const itemAddToBasket = pageCreate.addElement('div', 'itemAddToBasket', null, null, null, null, null, itemDetailContent);
 
-const imageContainerDiv = pageCreate.createDiv('imageContainerDiv');
-containerDiv.appendChild(imageContainerDiv);
-const itemDetailImage = pageCreate.createImage('../public/images/legoBonzaiTree.jpg', 'itemDetailsImage');
-imageContainerDiv.appendChild(itemDetailImage);
+  addQuantityButtonListeners();
+}
 
-const itemDetailContent = pageCreate.createDiv('itemDetailContentContainer');
-containerDiv.appendChild(itemDetailContent);
-
-const itemDescriptionContainer = pageCreate.createDiv('itemDescriptionContainer');
-const itemDetailDescText = pageCreate.createParagraph('Description', 'itemDetailDescText');
-itemDetailContent.appendChild(itemDescriptionContainer);
-itemDescriptionContainer.appendChild(itemDetailDescText);
-
-const itemPriceContainer = pageCreate.createDiv('itemPriceContainer');
-const itemPriceText = pageCreate.createParagraph('Price', 'itemPriceText');
-itemDetailContent.appendChild(itemPriceContainer);
-itemPriceContainer.appendChild(itemPriceText);
-
-const itemDetailQuantity = pageCreate.createDiv('itemQuantityContainer');
-const minusButton = pageCreate.createButton('minusButton', 'button', '-');
-const additionButton = pageCreate.createButton('addButton', 'button', '+');
-const quantityField = pageCreate.createQuantityField('number', 'quantityField', '1');
-itemDetailContent.appendChild(itemDetailQuantity);
-itemDetailQuantity.appendChild(minusButton);
-itemDetailQuantity.appendChild(quantityField);
-itemDetailQuantity.appendChild(additionButton);
-
-const stockStatus = pageCreate.createDiv('stockStatus');
-itemDetailContent.appendChild(stockStatus);
-
-const itemAddToBasket = pageCreate.createDiv('itemAddToBasket');
-itemDetailContent.appendChild(itemAddToBasket);
-
-
-function addQuantityButtons() {
-  const addButton = pageCreate.createButton('addButton', 'button', '+');
-  const minusButton = pageCreate.createButton('minusButton', 'button', '-');
+function addQuantityButtonListeners() {
+  const addButton = document.querySelector('#addButton');
+  const minusButton = document.querySelector('#minusButton');
+  const quantityField = document.querySelector('#quantityField');
 
   addButton.addEventListener('click', event => {
     event.preventDefault();
@@ -56,6 +39,9 @@ function addQuantityButtons() {
   minusButton.addEventListener('click', event => {
     event.preventDefault();
     const currentValue = Number(quantityField.value) || 0;
-    quantityField.value = currentValue + 1;
+    quantityField.value = currentValue - 1;
   });
+  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }
+
+itemPageInitialLoad();

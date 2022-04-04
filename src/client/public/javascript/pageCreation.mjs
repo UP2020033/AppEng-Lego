@@ -1,43 +1,5 @@
 // functions to create different elements - saves me repeating some code..
 
-export function createDiv(divClass) {
-  const newBar = document.createElement('div');
-  newBar.className = divClass;
-  return newBar;
-}
-
-export function createHyperlink(text, link) {
-  const navAnchor = document.createElement('a');
-  navAnchor.setAttribute('href', link);
-  navAnchor.innerText = text;
-  navAnchor.className = 'hyperlink';
-  return navAnchor;
-}
-
-export function createImage(imgSource, imgClass) {
-  const newImage = document.createElement('img');
-  newImage.src = imgSource;
-  newImage.classList.add(imgClass);
-  console.log(newImage);
-  return newImage;
-}
-
-export function createButton(buttonId, buttonClass, text) {
-  const newButton = document.createElement('button');
-  newButton.classList.add(buttonClass);
-  newButton.id = buttonId;
-  newButton.textContent = text;
-  return newButton;
-}
-
-export function createParagraph(content, pClass, pId) {
-  const newPara = document.createElement('p');
-  newPara.textContent = content;
-  newPara.classList.add(pClass);
-  newPara.id = pId;
-  return newPara;
-}
-
 export function createSearchField(text, id, name) {
   const searchField = document.createElement('input');
   searchField.placeholder = text;
@@ -46,21 +8,14 @@ export function createSearchField(text, id, name) {
   return searchField;
 }
 
-export function createQuantityField(inputType, id, defaultValue) {
-  const inputField = document.createElement('input');
-  inputField.type = inputType;
-  inputField.value = defaultValue;
-  inputField.id = id;
-  return inputField;
-}
-
-
-export function addElement(elementType, classValue, idValue, txtContent, imgSource, appendTo) {
+export function addElement(elementType, classValue, idValue, txtContent, imgSource, inputType, value, appendTo) {
   const newElement = document.createElement(elementType);
   if (classValue !== null) newElement.className = classValue;
   if (idValue !== null) newElement.id = idValue;
   if (txtContent !== null) newElement.textContent = `${txtContent}`;
   if (elementType === 'a') newElement.href = imgSource;
+  if (inputType !== null) newElement.inputType = inputType;
+  if (value !== null) newElement.defaultValue = value;
   if (elementType === 'img') {
     newElement.src = imgSource;
   }
@@ -95,29 +50,30 @@ export function addNavBarEventListeners() {
 
 export function addTopNavBar() {
   const mainSection = document.querySelector('.mainSection');
-  const topBarDiv = addElement('div', 'topBarDiv', null, null, null, mainSection);
-  addElement('button', 'button', 'login', 'Login', null, topBarDiv);
-  addElement('button', 'button', 'logout', 'Logout', null, topBarDiv);
+  const topBarDiv = addElement('div', 'topBarDiv', null, null, null, null, null, mainSection);
+  addElement('button', 'button', 'login', 'Login', null, null, null, topBarDiv);
+  addElement('button', 'button', 'logout', 'Logout', null, null, null, topBarDiv);
 }
 
 export function addMainNavBar() {
   const mainSection = document.querySelector('.mainSection');
-  const mainBarDiv = addElement('div', 'mainBarDiv', null, null, null, mainSection);
-  const logoDiv = addElement('div', 'logoDiv', null, null, null, mainBarDiv);
-  addElement('p', 'logoLink', 'logoLink', 'BlockZilla', null, logoDiv);
-  const homeDiv = addElement('div', 'homeDiv', null, null, null, mainBarDiv);
-  addElement('div', 'navLink', 'homeLink', 'Home', null, homeDiv);
-  const shopDiv = addElement('div', 'shopDiv', null, null, null, mainBarDiv);
-  addElement('div', 'navLink', 'shopLink', 'Shop', null, shopDiv);
-  const searchDiv = addElement('div', 'searchDiv', null, null, null, mainBarDiv);
+  const mainBarDiv = addElement('div', 'mainBarDiv', null, null, null, null, null, mainSection);
+  const logoDiv = addElement('div', 'logoDiv', null, null, null, null, null, mainBarDiv);
+  addElement('p', 'logoLink', 'logoLink', 'BlockZilla', null, null, null, logoDiv);
+  const homeDiv = addElement('div', 'homeDiv', null, null, null, null, null, mainBarDiv);
+  addElement('div', 'navLink', 'homeLink', 'Home', null, null, null, homeDiv);
+  const shopDiv = addElement('div', 'shopDiv', null, null, null, null, null, mainBarDiv);
+  addElement('div', 'navLink', 'shopLink', 'Shop', null, null, null, shopDiv);
+  const searchDiv = addElement('div', 'searchDiv', null, null, null, null, null, mainBarDiv);
   searchDiv.append(createSearchField('Search for an item...', 'search', 'search'));
-  const basketDiv = addElement('div', 'basketDiv', null, null, null, mainBarDiv);
-  addElement('img', 'basket', null, null, '../public/images/shoppingcart.png', basketDiv);
+  const basketDiv = addElement('div', 'basketDiv', null, null, null, null, null, mainBarDiv);
+  addElement('img', 'basket', null, null, '../public/images/shoppingcart.png', null, null, basketDiv);
   document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
 }
 
 export function addBottomNavBar() {
-  document.querySelector('.mainSection').appendChild(createDiv('bottomBarDiv'));
+  const mainSection = document.querySelector('.mainSection');
+  addElement('div', 'bottomBarDiv', null, null, null, null, null, mainSection);
 }
 
 export function createPage() {

@@ -71,29 +71,15 @@ async function fetchData() {
 
 function createTile(id, description, image, price) {
   const selectContainer = document.querySelector('.mainShopBox');
-  const newItem = document.createElement('div');
-  selectContainer.appendChild(newItem);
-  newItem.classList.add('item');
-  newItem.id = `item:${id}`;
+  const newItem = pageCreate.addElement('div', 'item', `item:${id}`, null, null, null, null, selectContainer);
 
-  const newImage = pageCreate.createImage(image, 'itemImage');
-  newImage.id = `image:${id}`;
-  newItem.appendChild(newImage);
-
-  const newItemDesc = pageCreate.createDiv('itemDescription');
-  const newItemDescText = pageCreate.createParagraph(description, 'descriptionText');
-  newItem.appendChild(newItemDesc);
-  newItemDesc.appendChild(newItemDescText);
-
-  const itemPrice = pageCreate.createDiv('itemPrice');
-  const itemPriceText = pageCreate.createParagraph(price, 'itemPriceText');
-  newItem.appendChild(itemPrice);
-  itemPrice.appendChild(itemPriceText);
-
-  const addToBag = pageCreate.createDiv('addItemToBag');
-  const addToBagText = pageCreate.createParagraph('Add to Basket', 'addItemToBag');
-  newItem.appendChild(addToBag);
-  addToBag.appendChild(addToBagText);
+  pageCreate.addElement('img', 'itemImage', `image:${id}`, null, image, null, null, newItem);
+  const newItemDesc = pageCreate.addElement('div', 'itemDescription', null, null, null, null, null, newItem);
+  pageCreate.addElement('p', 'descriptionText', null, description, null, null, null, newItemDesc);
+  const itemPrice = pageCreate.addElement('div', 'itemPrice', null, null, null, null, null, newItem);
+  pageCreate.addElement('p', 'itemPriceText', null, price, null, null, null, itemPrice);
+  const addToBag = pageCreate.addElement('div', 'addItemToBag', null, null, null, null, null, newItem);
+  pageCreate.addElement('button', 'addItemToBag', null, 'Add to Basket', null, null, null, addToBag);
 }
 
 // Looping over the the local array of objects and assigning necessary values.
