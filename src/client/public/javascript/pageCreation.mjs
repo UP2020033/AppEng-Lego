@@ -20,7 +20,6 @@ export function addElement(elementType, classValue, idValue, txtContent, imgSour
     newElement.src = imgSource;
   }
   appendTo.append(newElement);
-  console.log(newElement);
   return newElement;
 }
 

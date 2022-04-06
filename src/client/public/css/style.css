@@ -403,7 +403,6 @@ a:hover {
 
 .stockStatus {
     display: flex;
-    outline: solid black;
     width: 350px;
     height: 50px;
     margin-top: 50px;
@@ -411,8 +410,18 @@ a:hover {
 
 .itemAddToBasket {
     display: flex;
-    outline: solid black;
     width: 350px;
     height: 50px;
     margin-top: 50px;
+}
+
+#addToBag {
+    margin: auto;
+    text-align: center;
+    line-height: 30px;
+}
+
+#stockText {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
 }

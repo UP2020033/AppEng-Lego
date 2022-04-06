@@ -1,7 +1,5 @@
 // Importing express module
 import express from 'express';
-import path from 'path';
-import url from 'url';
 import data from './data.js';
 
 import authConfig from './auth-config.js';
@@ -18,8 +16,11 @@ app.get('/auth-config', (req, res) => {
   res.json(authConfig);
 });
 
-
 app.get('/get-data', (req, res) => {
+  res.send(data);
+});
+
+app.get('/get-data/:id', (req, res) => {
   res.send(data);
 });
 

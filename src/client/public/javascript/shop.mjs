@@ -46,21 +46,7 @@ export function addShopContent() {
   addCategoryFilter();
 }
 
-// Adding event listeners to direct user to the item page for the clicked image.
-
-function addTileListeners() {
-  const images = document.querySelectorAll('.itemImage');
-  console.log(images);
-  for (const image of images) {
-    image.addEventListener('click', () => {
-      // const itemId = image.id.split(":")[1]
-      document.location.href = 'http://localhost:8080/item'; // `http://localhost:8080/item/?id=itemId'
-      console.log(image.parentNode);
-    });
-  }
-}
-
-async function fetchData() {
+export async function fetchData() {
   const response = await fetch('/get-data');
   const data = await response.json();
   console.log(data);
@@ -73,15 +59,24 @@ function createTile(id, description, image, price) {
   const selectContainer = document.querySelector('.mainShopBox');
   const newItem = pageCreate.addElement('div', 'item', `item:${id}`, null, null, null, null, selectContainer);
 
-  pageCreate.addElement('img', 'itemImage', `image:${id}`, null, image, null, null, newItem);
+  const imageElem = pageCreate.addElement('img', 'itemImage', `image:${id}`, null, image, null, null, newItem);
   const newItemDesc = pageCreate.addElement('div', 'itemDescription', null, null, null, null, null, newItem);
   pageCreate.addElement('p', 'descriptionText', null, description, null, null, null, newItemDesc);
   const itemPrice = pageCreate.addElement('div', 'itemPrice', null, null, null, null, null, newItem);
   pageCreate.addElement('p', 'itemPriceText', null, price, null, null, null, itemPrice);
   const addToBag = pageCreate.addElement('div', 'addItemToBag', null, null, null, null, null, newItem);
   pageCreate.addElement('button', 'addItemToBag', null, 'Add to Basket', null, null, null, addToBag);
-}
 
+  newItemDesc.addEventListener('click', () => {
+    document.location.href = `http://localhost:8080/item/?product_id:${id}`;
+  });
+
+  imageElem.addEventListener('click', () => {
+    // const itemId = image.id.split(":")[1]
+    document.location.href = `http://localhost:8080/item/?product_id:${id}`;
+    console.log(image.parentNode);
+  });
+}
 // Looping over the the local array of objects and assigning necessary values.
 
 function addTiles() {
@@ -90,7 +85,7 @@ function addTiles() {
     console.log(dataObj);
     for (const param of dataObj) {
       createTile(param.id, param.description, param.image, param.price);
-      addTileListeners();
+      // addTileListeners(param.id);
     }
   });
 }
