@@ -16,6 +16,7 @@ async function itemPageInitialLoad() {
   const response = await fetch(`/get-data/${itemId}`, (response) => {
     console.log(response);
   });
+  console.log(response);
 
   const itemDetails = response.json();
   console.log(itemDetails);
