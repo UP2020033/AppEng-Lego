@@ -1,9 +1,8 @@
 // Importing express module
-import express from 'express';
-import data from './data.js';
+const express = require('express');
+const data = require('./data.js');
 
-import authConfig from './auth-config.js';
-
+const authConfig = require('./auth-config.js');
 
 // Creating the express.js server
 const app = express();
@@ -17,11 +16,11 @@ app.get('/auth-config', (req, res) => {
 });
 
 app.get('/get-data', (req, res) => {
-  res.send(data);
+  res.send(data.data);
 });
 
 app.get('/get-data/:id', (req, res) => {
-  res.send(data);
+  res.send(data.data);
 });
 
 // Variable to store the port value

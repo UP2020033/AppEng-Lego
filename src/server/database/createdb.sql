@@ -26,7 +26,7 @@ CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
     product_description VARCHAR(70) NOT NULL,
     product_price DECIMAL NOT NULL,
-    product_image VARCHAR(50),
+    product_image_link VARCHAR(50),
     product_colour VARCHAR(20),
     product_category VARCHAR(50),
     product_theme VARCHAR(30),

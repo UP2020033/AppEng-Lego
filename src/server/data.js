@@ -1,4 +1,5 @@
-export default [
+
+const dataObj = [
   {
     id: '1',
     image: '../public/images/DummyImage.jpg',
@@ -42,3 +43,7 @@ export default [
     stock: '10',
   },
 ];
+
+module.exports = {
+  data: dataObj,
+};
