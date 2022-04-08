@@ -4,9 +4,9 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   user: config.user,
-  password: config.password,
-  host: config.password,
+  host: config.host,
   database: 'lego-database',
+  password: config.password,
   port: config.port,
 });
 
@@ -16,7 +16,7 @@ async function init() {
       console.log('Connected to the database');
     })
     .catch((err) => {
-      console.log(`Error is ${err}`);
+      console.log(err);
     });
 }
 
