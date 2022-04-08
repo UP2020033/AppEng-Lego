@@ -1,21 +1,26 @@
 
-const dbSetup = require('./database/dbsetup/dbSetup.js');
+const config = require('./database/config');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  username: dbSetup.username,
-  password: dbSetup.password,
-  host: dbSetup.host,
+  user: config.user,
+  password: config.password,
+  host: config.password,
   database: 'lego-database',
-  port: dbSetup.port,
+  port: config.port,
 });
 
-async function init () {
+async function init() {
   await pool.connect()
     .then(() => {
       console.log('Connected to the database');
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`Error is ${err}`);
     });
 }
+
+module.exports = {
+  init,
+  pool,
+};
