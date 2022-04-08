@@ -29,6 +29,6 @@ CREATE TABLE products (
     product_image VARCHAR(50),
     product_colour VARCHAR(20),
     product_category VARCHAR(50),
-    product_theme VARCHAR(30)
+    product_theme VARCHAR(30),
     stock_count INT
 );
