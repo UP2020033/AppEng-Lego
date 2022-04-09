@@ -8,6 +8,7 @@ async function insertdb() {
   await dbConnect.client.query(insert)
     .then(() => {
       console.log('Inserts complete');
+      process.exit(0);
     })
     .catch(err => {
       console.log(err);
