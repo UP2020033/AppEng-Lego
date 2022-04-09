@@ -59,7 +59,7 @@ function createTile(id, description, image, price) {
   const selectContainer = document.querySelector('.mainShopBox');
   const newItem = pageCreate.addElement('div', 'item', `item:${id}`, null, null, null, null, selectContainer);
 
-  const imageElem = pageCreate.addElement('img', 'itemImage', `image:${id}`, null, image, null, null, newItem);
+  const imageElem = pageCreate.addElement('img', 'itemImage', `image:${id}`, null, `/public/images/${image}.jpg`, null, null, newItem);
   const newItemDesc = pageCreate.addElement('div', 'itemDescription', null, null, null, null, null, newItem);
   pageCreate.addElement('p', 'descriptionText', null, description, null, null, null, newItemDesc);
   const itemPrice = pageCreate.addElement('div', 'itemPrice', null, null, null, null, null, newItem);
@@ -79,12 +79,23 @@ function createTile(id, description, image, price) {
 }
 // Looping over the the local array of objects and assigning necessary values.
 
+async function getItems() {
+  const response = await fetch('/getItems');
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
+getItems();
+
+
 function addTiles() {
-  const data = fetchData();
+  const data = getItems();
+  console.log(data);
   data.then(dataObj => {
     console.log(dataObj);
     for (const param of dataObj) {
-      createTile(param.id, param.description, param.image, param.price);
+      createTile(param.product_id, param.product_description, param.product_image_link, param.product_price);
       // addTileListeners(param.id);
     }
   });
