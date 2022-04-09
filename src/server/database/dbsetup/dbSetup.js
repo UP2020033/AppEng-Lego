@@ -3,33 +3,36 @@ const pgtools = require('pgtools');
 const config = require('../config');
 const fs = require('fs');
 
-function insertdb() {
+async function insertdb() {
   const insert = fs.readFileSync('./insertdb.sql', 'utf8');
-  dbConnect.pool.query(insert, (err) => {
-    if (err) {
+  await dbConnect.client.query(insert)
+    .then(() => {
+      console.log('Inserts complete');
+    })
+    .catch(err => {
       console.log(err);
-    }
-    console.log('Inserts complete');
-  });
+    });
 }
 
-function init() {
-  pgtools.createdb(config, 'legodatabase', function (err, res) {
+async function init() {
+  await pgtools.createdb(config, 'legodatabase', function (err, res) {
     if (err) {
-      console.error(err);
+      console.error(`createdb: ${err}`);
+    } else {
+      console.log(res);
+      dbConnect.init();
     }
-    console.log(res);
   });
-  dbConnect.init();
 
   const create = fs.readFileSync('./createdb.sql', 'utf8');
-  dbConnect.pool.query(create, (err) => {
-    if (err) {
+  await dbConnect.client.query(create)
+    .then(async () => {
+      console.log('Tables created');
+      await insertdb();
+    })
+    .catch(err => {
       console.log(err);
-    }
-    console.log('Tables created');
-    insertdb();
-  });
+    });
 }
 
 module.exports = {

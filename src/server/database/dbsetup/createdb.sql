@@ -15,13 +15,6 @@ CREATE TABLE orders (
     customer_id INT REFERENCES customer(customer_id) NOT NULL
 );
 
-CREATE TABLE order_details (
-    order_details_id SERIAL PRIMARY KEY,
-    quantity NUMERIC NOT NULL,
-    order_id INT REFERENCES orders(order_id) NOT NULL,
-    product_id INT REFERENCES products(product_id) NOT NULL
-);
-
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
     product_description VARCHAR(70) NOT NULL,
@@ -31,4 +24,11 @@ CREATE TABLE products (
     product_category VARCHAR(50),
     product_theme VARCHAR(30),
     stock_count INT
+);
+
+CREATE TABLE order_details (
+    order_details_id SERIAL PRIMARY KEY,
+    quantity NUMERIC NOT NULL,
+    order_id INT REFERENCES orders(order_id) NOT NULL,
+    product_id INT REFERENCES products(product_id) NOT NULL
 );

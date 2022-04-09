@@ -1,26 +1,26 @@
 
 const config = require('./database/config');
-const { Pool } = require('pg');
+const { Client } = require('pg');
 
-const pool = new Pool({
+const client = new Client({
   user: config.user,
   host: config.host,
-  database: 'lego-database',
+  database: 'legodatabase',
   password: config.password,
   port: config.port,
 });
 
 async function init() {
-  await pool.connect()
+  await client.connect()
     .then(() => {
       console.log('Connected to the database');
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`Connect: ${err}`);
     });
 }
 
 module.exports = {
   init,
-  pool,
+  client,
 };
