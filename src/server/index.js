@@ -27,7 +27,6 @@ app.get('/get-data/:id', (req, res) => {
 const portListenOn = 8080;
 
 // this will serve the files present in static/ inside this stage
-// app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../client')));
 app.use(express.static('../client/'));
 
 
