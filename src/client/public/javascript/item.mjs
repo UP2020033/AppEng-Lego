@@ -43,6 +43,13 @@ async function itemPageInitialLoad() {
   addQuantityButtonListeners();
 }
 
+async function getItems() {
+  const response = await fetch('/getItems');
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
 function addQuantityButtonListeners() {
   const addButton = document.querySelector('#addButton');
   const minusButton = document.querySelector('#minusButton');
