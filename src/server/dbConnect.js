@@ -21,7 +21,7 @@ async function init() {
       console.log('Connected to the database');
     })
     .catch((err) => {
-      console.log(`Connect: ${err}`);
+      console.log(err);
     });
 }
 

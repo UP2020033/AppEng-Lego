@@ -19,7 +19,7 @@ async function itemPageInitialLoad() {
   console.log(response);
 
   const itemDetails = response.json();
-  console.log(itemDetails);
+  console.log(`item details are ${itemDetails}`);
 
 
   const mainSection = document.querySelector('.mainSection');

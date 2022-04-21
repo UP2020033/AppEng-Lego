@@ -1,6 +1,6 @@
 const server = require('./webServer.js');
 const api = require('./api');
-const db = require('./connectDB');
+const db = require('./dbConnect');
 
 const portListenOn = 8080;
 

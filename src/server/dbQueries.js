@@ -1,4 +1,4 @@
-const { client } = require('./connectDB');
+const { client } = require('./dbConnect');
 
 const getItems = (req, res) => {
   client.query('SELECT * FROM products', (err, results) => {
@@ -9,7 +9,28 @@ const getItems = (req, res) => {
   });
 };
 
+const getItemById = async (req, res) => {
+  console.log(req.params.id);
+  const id = parseInt(req.params.id, 10);
+  await client.query(`
+    SELECT 
+      * 
+    FROM 
+      products 
+    WHERE 
+      product_id = $1
+    `, [id])
+    .then((results) => {
+      res.status(200).json(results.rows);
+      console.log(results);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 module.exports = {
   getItems,
+  getItemById,
 };
