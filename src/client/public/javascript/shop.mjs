@@ -88,7 +88,6 @@ function buildTile(id, description, image, price) {
   newImage.addEventListener('click', () => {
     // const itemId = image.id.split(":")[1]
     document.location.href = `http://localhost:8080/item/?product_id:${id}`;
-    console.log(image.parentNode);
   });
 }
 // Looping over the the local array of objects and assigning necessary values.
