@@ -5,7 +5,9 @@ import * as pageCreate from './pageCreation.mjs';
 //
 // )
 
-async function itemPageInitialLoad() {
+pageCreate.buildItemPage();
+
+async function buildItem() {
   let itemId = window.location.search;
   console.log(itemId);
   itemId = itemId.slice(1);
@@ -13,38 +15,44 @@ async function itemPageInitialLoad() {
   itemId = itemId[1];
   console.log(itemId);
 
-  const response = await fetch(`/get-data/${itemId}`, (response) => {
-    console.log(response);
-  });
-  console.log(response);
+  const response = await fetch(`/getItemById/${itemId}`);
+  const item = await response.json();
+  console.log(item);
 
-  const itemDetails = response.json();
-  console.log(`item details are ${itemDetails}`);
+  const imageContainerDiv = document.querySelector('.imageContainerDiv');
+  const itemImage = pageCreate.createImage('../public/images/legoBonzaiTree.jpg', 'itemDetailsImage');
+  imageContainerDiv.append(itemImage);
 
+  const itemDescriptionContainer = document.querySelector('.itemDescriptionContainer');
+  const itemDescription = pageCreate.createParagraph('Description', 'itemDetailDescText', 'itemDetailDescText');
+  itemDescriptionContainer.append(itemDescription);
 
-  const mainSection = document.querySelector('.mainSection');
-  const containerDiv = pageCreate.addElement('div', 'itemDetailContainerDiv', null, null, null, null, null, mainSection);
-  const imageContainerDiv = pageCreate.addElement('div', 'imageContainerDiv', null, null, null, null, null, containerDiv);
-  pageCreate.addElement('img', 'itemDetailsImage', null, null, '../public/images/legoBonzaiTree.jpg', null, null, imageContainerDiv);
-  const itemDetailContent = pageCreate.addElement('div', 'itemDetailContentContainer', null, null, null, null, null, containerDiv);
-  const itemDescriptionContainer = pageCreate.addElement('div', 'itemDescriptionContainer', null, null, null, null, null, itemDetailContent);
-  pageCreate.addElement('p', 'itemDetailDescText', null, 'Description', null, null, null, itemDescriptionContainer);
-  const itemPriceContainer = pageCreate.addElement('div', 'itemPriceContainer', null, null, null, null, null, itemDetailContent);
-  const itemPriceText = pageCreate.addElement('p', 'itemPriceText', null, 'Price', null, null, null, itemPriceContainer);
-  const itemDetailQuantity = pageCreate.addElement('div', 'itemQuantityContainer', null, null, null, null, null, itemDetailContent);
-  const minusButton = pageCreate.addElement('button', 'button', 'minusButton', '-', null, null, null, itemDetailQuantity);
-  const quantityField = pageCreate.addElement('input', null, 'quantityField', '1', null, 'number', '1', itemDetailQuantity);
-  const additionButton = pageCreate.addElement('button', 'button', 'addButton', '+', null, null, null, itemDetailQuantity);
-  const stockStatus = pageCreate.addElement('div', 'stockStatus', null, null, null, null, null, itemDetailContent);
-  const stockStatusText = pageCreate.addElement('p', null, 'stockText', 'stock', null, null, null, stockStatus);
-  const itemAddToBasket = pageCreate.addElement('div', 'itemAddToBasket', null, null, null, null, null, itemDetailContent);
-  const addToBasket = pageCreate.addElement('button', 'addItemToBag', 'addToBag', 'Add to Basket', null, null, null, itemAddToBasket);
+  const itemPriceContainer = document.querySelector('.itemPriceContainer');
+  const itemPriceText = pageCreate.createParagraph('Price', 'itemPriceText');
+  itemPriceContainer.append(itemPriceText);
+
+  const itemDetailQuantity = document.querySelector('.itemQuantityContainer');
+  const minusButton = pageCreate.createButton('minusButton', 'button', '-');
+  const quantityField = pageCreate.createQuantityField('number', 'quantityField', '1');
+  const additionButton = pageCreate.createButton('addButton', 'button', '+');
+
+  itemDetailQuantity.append(minusButton);
+  itemDetailQuantity.append(quantityField);
+  itemDetailQuantity.append(additionButton);
+
+  const stockStatus = document.querySelector('.stockStatus');
+  const stockStatusText = pageCreate.createParagraph('stock', 'stockText', 'stockText');
+  stockStatus.append(stockStatusText);
+
+  const itemAddToBasket = document.querySelector('.itemAddToBasket');
+  const addToBasket = pageCreate.createButton('addToBag', 'addItemToBag', 'Add to Basket');
+  itemAddToBasket.append(addToBasket);
 
   addQuantityButtonListeners();
 }
 
-async function getItems() {
-  const response = await fetch('/getItems');
+async function getItemById(id) {
+  const response = await fetch(`/getItemById/${id}`);
   const data = await response.json();
   console.log(data);
   return data;
@@ -71,4 +79,4 @@ function addQuantityButtonListeners() {
   // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }
 
-itemPageInitialLoad();
+buildItem();
