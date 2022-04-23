@@ -1,4 +1,5 @@
 import * as pageCreate from './pageCreation.mjs';
+import * as basket from './basket.mjs'
 
 // window.addEventListener('load', () => {
 // fetch url pass id into fetch}
@@ -6,6 +7,21 @@ import * as pageCreate from './pageCreation.mjs';
 // )
 
 pageCreate.buildItemPage();
+
+export function getProductId() {
+  let itemId = window.location.search;
+  console.log(itemId);
+  itemId = itemId.slice(1);
+  itemId = itemId.split(':');
+  itemId = itemId[1];
+  return itemId;
+}
+
+function addBasketListener() {
+  const addToBasket = document.querySelector('.addItemToBasketButton');
+  addToBasket.addEventListener('click', basket.addToBasket());
+  return addToBasket;
+}
 
 function buildItem(description, image, price, stock) {
   const imageContainerDiv = document.querySelector('.imageContainerDiv');
@@ -34,20 +50,15 @@ function buildItem(description, image, price, stock) {
   stockStatus.append(stockStatusText);
 
   const itemAddToBasket = document.querySelector('.itemAddToBasket');
-  const addToBasket = pageCreate.createButton('addToBag', 'addItemToBag', 'Add to Basket');
+  const addToBasket = pageCreate.createButton('itemddItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
   itemAddToBasket.append(addToBasket);
 
   addQuantityButtonListeners();
+  addBasketListener();
 }
 
-
 async function addItem() {
-  let itemId = window.location.search;
-  console.log(itemId);
-  itemId = itemId.slice(1);
-  itemId = itemId.split(':');
-  itemId = itemId[1];
-  console.log(itemId);
+  const itemId = getProductId();
 
   const response = await fetch(`/getItemById/${itemId}`);
   const item = await response.json();

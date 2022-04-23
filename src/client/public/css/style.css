@@ -224,14 +224,14 @@ a:hover {
     font-size: 15px;
     text-align: center;
     width: 300px;
-    height: 30px;
+    height: 25px;
 }
 
-.addItemToBag {
+.addItemToBasketButton {
     margin: auto;
-    padding-bottom: 10px;
+    margin-bottom: 15px;
     width: 280px;
-    height: 30px;
+    height: 40px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 15px;
@@ -242,11 +242,11 @@ a:hover {
     border-radius: 10px;
 }
 
-.addItemToBag:hover {
+.addItemToBasketButton:hover {
     margin: auto;
-    padding-bottom: 10px;
+    margin-bottom: 15px;
     width: 280px;
-    height: 30px;
+    height: 40px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 15px;
@@ -413,12 +413,6 @@ a:hover {
     width: 350px;
     height: 50px;
     margin-top: 50px;
-}
-
-#addToBag {
-    margin: auto;
-    text-align: center;
-    line-height: 30px;
 }
 
 #stockText {

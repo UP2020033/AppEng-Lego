@@ -76,8 +76,8 @@ function buildTile(id, description, image, price) {
   newItem.appendChild(itemPrice);
   itemPrice.appendChild(itemPriceText);
 
-  const addToBag = pageCreate.createDiv('addItemToBag');
-  const addToBagText = pageCreate.createParagraph('Add to Basket', 'addItemToBag');
+  const addToBag = pageCreate.createDiv('addItemToBasket');
+  const addToBagText = pageCreate.createParagraph('Add to Basket', 'addItemToBasketButton');
   newItem.appendChild(addToBag);
   addToBag.appendChild(addToBagText);
 
