@@ -1,4 +1,4 @@
-import * as pageCreate from './pageCreation.mjs';
+import * as pageBulder from './pageBuilder.mjs';
 
 // Add container div for Shop page
 
@@ -62,22 +62,22 @@ function buildTile(id, description, image, price) {
   newItem.classList.add('item');
   newItem.id = `item:${id}`;
 
-  const newImage = pageCreate.createImage(`/public/images/${image}.jpg`, 'itemImage');
+  const newImage = pageBulder.createImage(`/public/images/${image}.jpg`, 'itemImage');
   newImage.id = `image:${id}`;
   newItem.appendChild(newImage);
 
-  const newItemDesc = pageCreate.createDiv('itemDescription');
-  const newItemDescText = pageCreate.createParagraph(description, 'descriptionText');
+  const newItemDesc = pageBulder.createDiv('itemDescription');
+  const newItemDescText = pageBulder.createParagraph(description, 'descriptionText');
   newItem.appendChild(newItemDesc);
   newItemDesc.appendChild(newItemDescText);
 
-  const itemPrice = pageCreate.createDiv('itemPrice');
-  const itemPriceText = pageCreate.createParagraph(price, 'itemPriceText');
+  const itemPrice = pageBulder.createDiv('itemPrice');
+  const itemPriceText = pageBulder.createParagraph(price, 'itemPriceText');
   newItem.appendChild(itemPrice);
   itemPrice.appendChild(itemPriceText);
 
-  const addToBag = pageCreate.createDiv('addItemToBasket');
-  const addToBagText = pageCreate.createParagraph('Add to Basket', 'addItemToBasketButton');
+  const addToBag = pageBulder.createDiv('addItemToBasket');
+  const addToBagText = pageBulder.createParagraph('Add to Basket', 'addItemToBasketButton');
   newItem.appendChild(addToBag);
   addToBag.appendChild(addToBagText);
 

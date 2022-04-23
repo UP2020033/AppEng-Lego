@@ -1,3 +1,3 @@
-import * as pageCreate from './pageCreation.mjs';
+import * as pageBuilder from './pageBuilder.mjs';
 
-pageCreate.createPage();
+pageBuilder.buildPageStructure();

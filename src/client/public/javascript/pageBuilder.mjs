@@ -16,10 +16,11 @@ export function createHyperlink(text, link) {
   return navAnchor;
 }
 
-export function createImage(imgSource, imgClass) {
+export function createImage(imgSource, imgClass, imgId) {
   const newImage = document.createElement('img');
   newImage.src = imgSource;
-  newImage.classList.add(imgClass);
+  newImage.className = imgClass;
+  newImage.id = imgId;
   return newImage;
 }
 
@@ -97,7 +98,7 @@ export function addMainNavBar() {
   document.querySelector('.mainBarDiv').appendChild(createDiv('searchDiv'));
   document.querySelector('.searchDiv').appendChild(createSearchField('Search for an item...', 'search', 'search'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('basketDiv'));
-  document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'basket'));
+  document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'navLink', 'basket'));
   document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
   const div = document.querySelector('.basketDiv');
   console.log(div.childNodes);
@@ -107,7 +108,7 @@ export function addBottomNavBar() {
   document.querySelector('.mainSection').appendChild(createDiv('bottomBarDiv'));
 }
 
-export function createPage() {
+export function buildPageStructure() {
   addTopNavBar();
   addMainNavBar();
   addBottomNavBar();

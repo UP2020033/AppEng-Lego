@@ -1,12 +1,12 @@
-import * as pageCreate from './pageCreation.mjs';
-import * as basket from './basket.mjs'
+import * as pageBuilder from './pageBuilder.mjs';
+import * as localStorage from './localStorage.mjs';
 
 // window.addEventListener('load', () => {
 // fetch url pass id into fetch}
 //
 // )
 
-pageCreate.buildItemPage();
+pageBuilder.buildItemPage();
 
 export function getProductId() {
   let itemId = window.location.search;
@@ -19,7 +19,7 @@ export function getProductId() {
 
 function addToBasketListener() {
   const addToBasket = document.querySelector('#addItemToBasketButton');
-  addToBasket.addEventListener('click', basket.addToBasket);
+  addToBasket.addEventListener('click', localStorage.addToBasket);
 }
 
 function addQuantityButtonListeners() {
@@ -45,32 +45,32 @@ function addQuantityButtonListeners() {
 
 function buildItem(description, image, price, stock) {
   const imageContainerDiv = document.querySelector('.imageContainerDiv');
-  const itemImage = pageCreate.createImage(`../public/images/${image}.jpg`, 'itemDetailsImage');
+  const itemImage = pageBuilder.createImage(`../public/images/${image}.jpg`, 'itemDetailsImage');
   imageContainerDiv.append(itemImage);
 
   const itemDescriptionContainer = document.querySelector('.itemDescriptionContainer');
-  const itemDescription = pageCreate.createParagraph(`${description}`, 'itemDetailDescText', 'itemDetailDescText');
+  const itemDescription = pageBuilder.createParagraph(`${description}`, 'itemDetailDescText', 'itemDetailDescText');
   itemDescriptionContainer.append(itemDescription);
 
   const itemPriceContainer = document.querySelector('.itemPriceContainer');
-  const itemPriceText = pageCreate.createParagraph(`${price}`, 'itemPriceText');
+  const itemPriceText = pageBuilder.createParagraph(`${price}`, 'itemPriceText');
   itemPriceContainer.append(itemPriceText);
 
   const itemDetailQuantity = document.querySelector('.itemQuantityContainer');
-  const minusButton = pageCreate.createButton('minusButton', 'button', '-');
-  const quantityField = pageCreate.createQuantityField('number', 'quantityField', '1');
-  const additionButton = pageCreate.createButton('addButton', 'button', '+');
+  const minusButton = pageBuilder.createButton('minusButton', 'button', '-');
+  const quantityField = pageBuilder.createQuantityField('number', 'quantityField', '1');
+  const additionButton = pageBuilder.createButton('addButton', 'button', '+');
 
   itemDetailQuantity.append(minusButton);
   itemDetailQuantity.append(quantityField);
   itemDetailQuantity.append(additionButton);
 
   const stockStatus = document.querySelector('.stockStatus');
-  const stockStatusText = pageCreate.createParagraph(`${stock}`, 'stockText', 'stockText');
+  const stockStatusText = pageBuilder.createParagraph(`${stock}`, 'stockText', 'stockText');
   stockStatus.append(stockStatusText);
 
   const itemAddToBasket = document.querySelector('.itemAddToBasket');
-  const addToBasket = pageCreate.createButton('addItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
+  const addToBasket = pageBuilder.createButton('addItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
   itemAddToBasket.append(addToBasket);
 
   addQuantityButtonListeners();

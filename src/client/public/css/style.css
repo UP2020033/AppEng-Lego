@@ -281,14 +281,14 @@ a:hover {
     cursor: pointer;
 }
 
-.basket {
+#basket {
     margin-top: 15px;
     margin-right: 50px;
     width: 40px;
     height: 40px;
 }
 
-.basket:hover {
+#basket:hover {
     cursor: hand;
     cursor: pointer;
 }
