@@ -17,10 +17,30 @@ export function getProductId() {
   return itemId;
 }
 
-function addBasketListener() {
-  const addToBasket = document.querySelector('.addItemToBasketButton');
-  addToBasket.addEventListener('click', basket.addToBasket());
-  return addToBasket;
+function addToBasketListener() {
+  const addToBasket = document.querySelector('#addItemToBasketButton');
+  addToBasket.addEventListener('click', basket.addToBasket);
+}
+
+function addQuantityButtonListeners() {
+  const addButton = document.querySelector('#addButton');
+  const minusButton = document.querySelector('#minusButton');
+  const quantityField = document.querySelector('#quantityField');
+
+  addButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    quantityField.value = currentValue + 1;
+  });
+
+  minusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    if (currentValue === 0 || currentValue === 1) {
+      console.log('Value already 0, no subtracting!');
+    } else quantityField.value = currentValue - 1;
+  });
+  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }
 
 function buildItem(description, image, price, stock) {
@@ -50,11 +70,11 @@ function buildItem(description, image, price, stock) {
   stockStatus.append(stockStatusText);
 
   const itemAddToBasket = document.querySelector('.itemAddToBasket');
-  const addToBasket = pageCreate.createButton('itemddItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
+  const addToBasket = pageCreate.createButton('addItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
   itemAddToBasket.append(addToBasket);
 
   addQuantityButtonListeners();
-  addBasketListener();
+  addToBasketListener();
 }
 
 async function addItem() {
@@ -70,24 +90,3 @@ async function addItem() {
 }
 
 addItem();
-
-function addQuantityButtonListeners() {
-  const addButton = document.querySelector('#addButton');
-  const minusButton = document.querySelector('#minusButton');
-  const quantityField = document.querySelector('#quantityField');
-
-  addButton.addEventListener('click', event => {
-    event.preventDefault();
-    const currentValue = Number(quantityField.value) || 0;
-    quantityField.value = currentValue + 1;
-  });
-
-  minusButton.addEventListener('click', event => {
-    event.preventDefault();
-    const currentValue = Number(quantityField.value) || 0;
-    if (currentValue === 0 || currentValue === 1) {
-      console.log('Value already 0, no subtracting!');
-    } else quantityField.value = currentValue - 1;
-  });
-  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
-}
