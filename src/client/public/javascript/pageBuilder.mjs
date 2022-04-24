@@ -131,3 +131,18 @@ export function buildItemPage() {
   itemDetailContent.append(createDiv('stockStatus'));
   itemDetailContent.append(createDiv('itemAddToBasket'));
 }
+
+export function buildBasketPage() {
+  const mainSection = document.querySelector('.mainSection');
+  const basketContainer = createDiv('basketMainContainer');
+  const basketItemContainer = createDiv('basketItemContainer');
+  const basketCheckout = createDiv('basketCheckoutContainer');
+
+  mainSection.append(basketContainer);
+  basketContainer.append(basketItemContainer);
+  basketContainer.append(basketCheckout);
+
+  const basketTitle = createDiv('basketTitle');
+  basketContainer.append(basketTitle);
+  basketTitle.append(createParagraph('Your basket', 'basketTitleText', null));
+}

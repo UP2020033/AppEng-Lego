@@ -2,7 +2,7 @@ import { getProductId as itemInfo } from './item.mjs';
 
 export function addToBasket() {
   const quantityField = document.querySelector('#quantityField');
-  const itemId = itemInfo.getProductId();
+  const itemId = itemInfo();
   const quantityValue = quantityField.value;
   localStorage.setItem(itemId, quantityValue);
 
