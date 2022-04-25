@@ -79,6 +79,42 @@ export function addNavBarEventListeners() {
   }
 }
 
+// Adding basket button for numerous pages.
+
+export function addBasketButtons(parent) {
+  const minusButton = createButton('minusButton', 'button', '-');
+  const quantityField = createQuantityField('number', 'quantityField', '1');
+  const additionButton = createButton('addButton', 'button', '+');
+
+  parent.append(minusButton);
+  parent.append(quantityField);
+  parent.append(additionButton);
+}
+
+
+// Adding event listeners for the buttons to adjust the item quantity selector.
+
+export function addQuantityButtonListeners() {
+  const addButton = document.querySelector('#addButton');
+  const minusButton = document.querySelector('#minusButton');
+  const quantityField = document.querySelector('#quantityField');
+
+  addButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    quantityField.value = currentValue + 1;
+  });
+
+  minusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    if (currentValue === 0 || currentValue === 1) {
+      console.log('Value already 0, no subtracting!');
+    } else quantityField.value = currentValue - 1;
+  });
+  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
+}
+
 // Appending the necessary elements to their parents
 
 export function addTopNavBar() {

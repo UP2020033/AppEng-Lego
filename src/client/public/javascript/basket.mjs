@@ -1,5 +1,4 @@
 import * as pageBuilder from './pageBuilder.mjs';
-import { addQuantityButtonListeners } from './item.mjs';
 
 pageBuilder.buildBasketPage();
 

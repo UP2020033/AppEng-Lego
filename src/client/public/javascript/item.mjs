@@ -1,13 +1,6 @@
 import * as pageBuilder from './pageBuilder.mjs';
 import * as localStorage from './localStorage.mjs';
 
-// window.addEventListener('load', () => {
-// fetch url pass id into fetch}
-//
-// )
-
-pageBuilder.buildItemPage();
-
 export function getProductId() {
   let itemId = window.location.search;
   console.log(itemId);
@@ -20,27 +13,6 @@ export function getProductId() {
 function addToBasketListener() {
   const addToBasket = document.querySelector('#addItemToBasketButton');
   addToBasket.addEventListener('click', localStorage.addToBasket);
-}
-
-export function addQuantityButtonListeners() {
-  const addButton = document.querySelector('#addButton');
-  const minusButton = document.querySelector('#minusButton');
-  const quantityField = document.querySelector('#quantityField');
-
-  addButton.addEventListener('click', event => {
-    event.preventDefault();
-    const currentValue = Number(quantityField.value) || 0;
-    quantityField.value = currentValue + 1;
-  });
-
-  minusButton.addEventListener('click', event => {
-    event.preventDefault();
-    const currentValue = Number(quantityField.value) || 0;
-    if (currentValue === 0 || currentValue === 1) {
-      console.log('Value already 0, no subtracting!');
-    } else quantityField.value = currentValue - 1;
-  });
-  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }
 
 function addBasketButtons() {
@@ -68,13 +40,6 @@ function buildItem(description, image, price, stock) {
   itemPriceContainer.append(itemPriceText);
 
   const itemDetailQuantity = document.querySelector('.itemQuantityContainer');
-  const minusButton = pageBuilder.createButton('minusButton', 'button', '-');
-  const quantityField = pageBuilder.createQuantityField('number', 'quantityField', '1');
-  const additionButton = pageBuilder.createButton('addButton', 'button', '+');
-
-  itemDetailQuantity.append(minusButton);
-  itemDetailQuantity.append(quantityField);
-  itemDetailQuantity.append(additionButton);
 
   const stockStatus = document.querySelector('.stockStatus');
   const stockStatusText = pageBuilder.createParagraph(`${stock}`, 'stockText', 'stockText');
@@ -84,7 +49,8 @@ function buildItem(description, image, price, stock) {
   const addToBasket = pageBuilder.createButton('addItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
   itemAddToBasket.append(addToBasket);
 
-  addQuantityButtonListeners();
+  pageBuilder.addBasketButtons(itemDetailQuantity);
+  pageBuilder.addQuantityButtonListeners();
   addToBasketListener();
 }
 
@@ -100,4 +66,5 @@ async function addItem() {
   }
 }
 
-addItem();
+window.addEventListener('load', pageBuilder.buildItemPage);
+window.addEventListener('load', addItem);
