@@ -143,6 +143,6 @@ export function buildBasketPage() {
   basketContainer.append(basketCheckout);
 
   const basketTitle = createDiv('basketTitle');
-  basketContainer.append(basketTitle);
+  basketItemContainer.append(basketTitle);
   basketTitle.append(createParagraph('Your basket', 'basketTitleText', null));
 }

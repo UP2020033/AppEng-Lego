@@ -22,7 +22,7 @@ function addToBasketListener() {
   addToBasket.addEventListener('click', localStorage.addToBasket);
 }
 
-function addQuantityButtonListeners() {
+export function addQuantityButtonListeners() {
   const addButton = document.querySelector('#addButton');
   const minusButton = document.querySelector('#minusButton');
   const quantityField = document.querySelector('#quantityField');
@@ -41,6 +41,17 @@ function addQuantityButtonListeners() {
     } else quantityField.value = currentValue - 1;
   });
   // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
+}
+
+function addBasketButtons() {
+  const itemDetailQuantity = document.querySelector('.itemQuantityContainer');
+  const minusButton = pageBuilder.createButton('minusButton', 'button', '-');
+  const quantityField = pageBuilder.createQuantityField('number', 'quantityField', '1');
+  const additionButton = pageBuilder.createButton('addButton', 'button', '+');
+
+  itemDetailQuantity.append(minusButton);
+  itemDetailQuantity.append(quantityField);
+  itemDetailQuantity.append(additionButton);
 }
 
 function buildItem(description, image, price, stock) {
