@@ -15,17 +15,6 @@ function addToBasketListener() {
   addToBasket.addEventListener('click', localStorage.addToBasket);
 }
 
-function addBasketButtons() {
-  const itemDetailQuantity = document.querySelector('.itemQuantityContainer');
-  const minusButton = pageBuilder.createButton('minusButton', 'button', '-');
-  const quantityField = pageBuilder.createQuantityField('number', 'quantityField', '1');
-  const additionButton = pageBuilder.createButton('addButton', 'button', '+');
-
-  itemDetailQuantity.append(minusButton);
-  itemDetailQuantity.append(quantityField);
-  itemDetailQuantity.append(additionButton);
-}
-
 function buildItem(description, image, price, stock) {
   const imageContainerDiv = document.querySelector('.imageContainerDiv');
   const itemImage = pageBuilder.createImage(`../public/images/${image}.jpg`, 'itemDetailsImage');
@@ -49,7 +38,7 @@ function buildItem(description, image, price, stock) {
   const addToBasket = pageBuilder.createButton('addItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
   itemAddToBasket.append(addToBasket);
 
-  pageBuilder.addBasketButtons(itemDetailQuantity);
+  pageBuilder.basketQuantityFieldButtons(itemDetailQuantity);
   pageBuilder.addQuantityButtonListeners();
   addToBasketListener();
 }

@@ -419,3 +419,99 @@ a:hover {
     font-family: Arial, Helvetica, sans-serif;
     margin: auto;
 }
+
+.basketMainContainer {
+    display: flex;
+}
+
+.basketItemContainer {
+    margin-left: 500px;
+    width: 800px;
+    height: 300px;
+}
+
+.basketCheckoutContainer {
+    margin-left: 50px;
+    margin-top: 125px;
+    width: 400px;
+    height: 300px;
+}
+
+.basketTitle {
+    margin-top: 50px;
+    width: 800px;
+}
+
+.basketTitleText {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.basketItem {
+    display: flex;
+    width: 800px;
+    height: 250px;
+    border-top: solid black;
+    border-width: thin;
+}
+
+.imageContainer {
+    width: 150px;
+    height: 150px;
+}
+
+.basketItemDescriptionContainer {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.basketItemDescription {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.basketItemPriceContainer {
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+.basketItemPrice {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.basketQuantityFieldContainer {
+    margin-top: 50px;
+}
+
+.basketImg {
+    width: 150px;
+    height: 150px;
+}
+
+.basketCheckoutContainer {
+    border: solid black;
+    border-width: thin;
+}
+
+.orderDetailsTitle {
+    margin-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.basketQuantityText {
+    margin-top: 25px;
+    margin-left: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.basketTotalPrice {
+    margin-top: 25px;
+    margin-left: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.orderDetailsTitleContainer {
+    width: 350px;
+    margin: auto;
+    border-bottom: solid black;
+    border-width: thin;
+}

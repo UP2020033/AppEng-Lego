@@ -76,10 +76,10 @@ function buildTile(id, description, image, price) {
   newItem.appendChild(itemPrice);
   itemPrice.appendChild(itemPriceText);
 
-  const addToBag = pageBulder.createDiv('addItemToBasket');
-  const addToBagText = pageBulder.createParagraph('Add to Basket', 'addItemToBasketButton');
-  newItem.appendChild(addToBag);
-  addToBag.appendChild(addToBagText);
+  const addToBasket = pageBulder.createDiv('addItemToBasket');
+  const addToBasketText = pageBulder.createParagraph('Add to Basket', 'addItemToBasketButton');
+  newItem.appendChild(addToBasket);
+  addToBasket.appendChild(addToBasketText);
 
   newItemDesc.addEventListener('click', () => {
     document.location.href = `http://localhost:8080/item/?product_id:${id}`;

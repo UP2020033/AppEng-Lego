@@ -81,7 +81,7 @@ export function addNavBarEventListeners() {
 
 // Adding basket button for numerous pages.
 
-export function addBasketButtons(parent) {
+export function basketQuantityFieldButtons(parent) {
   const minusButton = createButton('minusButton', 'button', '-');
   const quantityField = createQuantityField('number', 'quantityField', '1');
   const additionButton = createButton('addButton', 'button', '+');
@@ -90,6 +90,8 @@ export function addBasketButtons(parent) {
   parent.append(quantityField);
   parent.append(additionButton);
 }
+
+// Adding basket
 
 
 // Adding event listeners for the buttons to adjust the item quantity selector.
