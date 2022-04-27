@@ -16,9 +16,9 @@ function addToBasketListener() {
 }
 
 function buildItem(description, image, price, stock) {
-  const imageContainerDiv = document.querySelector('.imageContainerDiv');
+  const imageContainer = document.querySelector('.imageContainerDiv');
   const itemImage = pageBuilder.createImage(`../public/images/${image}.jpg`, 'itemDetailsImage');
-  imageContainerDiv.append(itemImage);
+  imageContainer.append(itemImage);
 
   const itemDescriptionContainer = document.querySelector('.itemDescriptionContainer');
   const itemDescription = pageBuilder.createParagraph(`${description}`, 'itemDetailDescText', 'itemDetailDescText');

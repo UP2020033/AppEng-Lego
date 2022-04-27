@@ -450,7 +450,7 @@ a:hover {
 .basketItem {
     display: flex;
     width: 800px;
-    height: 250px;
+    height: 175px;
     border-top: solid black;
     border-width: thin;
 }
@@ -483,8 +483,8 @@ a:hover {
 }
 
 .basketImg {
-    width: 150px;
-    height: 150px;
+    width: 175px;
+    height: 175px;
 }
 
 .basketCheckoutContainer {
@@ -514,4 +514,46 @@ a:hover {
     margin: auto;
     border-bottom: solid black;
     border-width: thin;
+}
+
+.checkoutButton {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #a19f9d;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.checkoutButton {
+    margin-top: 20px;
+    margin-left: 110px;
+    width: 180px;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #a19f9d;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.checkoutButton:hover {
+    margin-top: 20px;
+    margin-left: 110px;
+    width: 180px;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    background-color: #AFD5EB;
+    cursor: hand;
+    cursor: pointer;
 }

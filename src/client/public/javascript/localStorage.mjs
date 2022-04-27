@@ -4,8 +4,13 @@ export function addToBasket() {
   const quantityField = document.querySelector('#quantityField');
   const itemId = itemInfo();
   const quantityValue = quantityField.value;
-  localStorage.setItem(itemId, quantityValue);
 
+  const itemToAdd = {
+    product_id: itemId,
+    quantity: quantityValue,
+  };
+
+  localStorage.setItem('test', JSON.stringify(itemToAdd));
   console.log(quantityValue);
 }
 
