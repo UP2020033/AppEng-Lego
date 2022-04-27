@@ -1,8 +1,8 @@
 import { getProductId as itemInfo } from './item.mjs';
 
-export function addToBasket() {
+export function addToBasket(productId) {
   const quantityField = document.querySelector('#quantityField');
-  const itemId = itemInfo();
+  const itemId = productId.split(':')[1];
   const quantityValue = quantityField.value;
 
   const itemToAdd = {
@@ -10,7 +10,7 @@ export function addToBasket() {
     quantity: quantityValue,
   };
 
-  localStorage.setItem('test', JSON.stringify(itemToAdd));
+  localStorage.setItem(itemId, JSON.stringify(itemToAdd));
   console.log(quantityValue);
 }
 

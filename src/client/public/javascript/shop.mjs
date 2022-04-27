@@ -77,7 +77,7 @@ function buildTile(id, description, image, price) {
   itemPrice.appendChild(itemPriceText);
 
   const addToBasket = pageBulder.createDiv('addItemToBasket');
-  const addToBasketText = pageBulder.createParagraph('Add to Basket', 'addItemToBasketButton');
+  const addToBasketText = pageBulder.createButton(`button:${id}`, 'addItemToBasketButton', 'Add to Basket');
   newItem.appendChild(addToBasket);
   addToBasket.appendChild(addToBasketText);
 

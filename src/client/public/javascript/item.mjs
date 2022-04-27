@@ -11,11 +11,16 @@ export function getProductId() {
 }
 
 function addToBasketListener() {
-  const addToBasket = document.querySelector('#addItemToBasketButton');
-  addToBasket.addEventListener('click', localStorage.addToBasket);
+  const addToBasket = document.querySelector('.addItemToBasketButton');
+  const id = addToBasket.id;
+  console.log('test');
+  console.log(addToBasket);
+  addToBasket.addEventListener('click', () => {
+    localStorage.addToBasket(id);
+  });
 }
 
-function buildItem(description, image, price, stock) {
+function buildItem(id, description, image, price, stock) {
   const imageContainer = document.querySelector('.imageContainerDiv');
   const itemImage = pageBuilder.createImage(`../public/images/${image}.jpg`, 'itemDetailsImage');
   imageContainer.append(itemImage);
@@ -35,7 +40,7 @@ function buildItem(description, image, price, stock) {
   stockStatus.append(stockStatusText);
 
   const itemAddToBasket = document.querySelector('.itemAddToBasket');
-  const addToBasket = pageBuilder.createButton('addItemToBasketButton', 'addItemToBasketButton', 'Add to Basket');
+  const addToBasket = pageBuilder.createButton(`button:${id}`, 'addItemToBasketButton', 'Add to Basket');
   itemAddToBasket.append(addToBasket);
 
   pageBuilder.basketQuantityFieldButtons(itemDetailQuantity);
@@ -51,7 +56,7 @@ async function addItem() {
   console.log(item);
 
   for (const param of item) {
-    buildItem(param.product_description, param.product_image_link, param.product_price, param.stock_count);
+    buildItem(param.product_id, param.product_description, param.product_image_link, param.product_price, param.stock_count);
   }
 }
 

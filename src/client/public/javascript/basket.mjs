@@ -2,6 +2,27 @@ import * as pageBuilder from './pageBuilder.mjs';
 
 pageBuilder.buildBasketPage();
 
+async function findBasketItems() {
+  const basketItemsArr = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    let basketItem = localStorage.getItem(localStorage.key(i));
+    basketItem = JSON.parse(basketItem);
+    console.log(localStorage);
+
+    const response = await fetch(`/getItemById/${basketItem.product_id}`);
+    const item = response.json();
+    item.then(obj => {
+      for (const item of obj) {
+        basketItemsArr.push(item);
+      }
+    });
+  }
+  console.log(basketItemsArr);
+  return basketItemsArr;
+}
+
+console.log(await findBasketItems());
+
 function addBasketItemDetails() {
   const basketItemContainer = document.querySelector('.basketItemContainer');
   const basketItem = pageBuilder.createDiv('basketItem');
@@ -50,8 +71,6 @@ function addCheckoutDetails() {
   checkoutContainer.append(checkoutButton);
 }
 
-function createBasketDataObject() {
-}
 
 function init() {
   addBasketItemDetails();
@@ -63,6 +82,3 @@ addBasketItemDetails();
 addBasketItemDetails();
 
 window.addEventListener('load', init);
-
-
-console.log(window.localStorage.getItem('Test'));
