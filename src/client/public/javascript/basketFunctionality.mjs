@@ -1,21 +1,29 @@
 export function addToBasket(productId) {
   const quantityField = document.querySelector('#quantityField');
   const itemId = productId.split(':')[1];
-  const quantityValue = quantityField.value;
+  console.log(window.location.href);
 
-  const itemToAdd = {
-    product_id: itemId,
-    quantity: quantityValue,
-  };
-  console.log(window.location);
+  let itemToAdd = {};
+  if (window.location.href === 'http://localhost:8080/store/') {
+    itemToAdd = {
+      product_id: itemId,
+      quantity_id: 1,
+    };
+  } else {
+    const quantityValue = quantityField.value;
+    itemToAdd = {
+      product_id: itemId,
+      quantity: quantityValue,
+    };
+  }
   localStorage.setItem(itemId, JSON.stringify(itemToAdd));
-  console.log(quantityValue);
+  console.log(itemToAdd);
 }
 
-export function addToBasketListener() {
+export function addToBasketListener(button) {
   const addToBasketButton = document.querySelector('.addItemToBasketButton');
-  const id = addToBasketButton.id;
-  addToBasketButton.addEventListener('click', () => {
+  const id = button.id;
+  button.addEventListener('click', () => {
     addToBasket(id);
   });
 }

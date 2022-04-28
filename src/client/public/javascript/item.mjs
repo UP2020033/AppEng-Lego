@@ -35,7 +35,7 @@ function buildItem(id, description, image, price, stock) {
 
   pageBuilder.basketQuantityFieldButtons(itemDetailQuantity);
   pageBuilder.addQuantityButtonListeners();
-  basketFunc.addToBasketListener();
+  basketFunc.addToBasketListener(addToBasket);
 }
 
 async function addItem() {

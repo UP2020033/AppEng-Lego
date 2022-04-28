@@ -82,8 +82,7 @@ function buildTile(id, description, image, price) {
   newItem.appendChild(addToBasket);
   addToBasket.appendChild(addToBasketButton);
 
-  basketFunc.addToBasketListener();
-
+  basketFunc.addToBasketListener(addToBasketButton);
 
   newItemDesc.addEventListener('click', () => {
     document.location.href = `http://localhost:8080/item/?product_id:${id}`;
