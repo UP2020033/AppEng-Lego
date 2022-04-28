@@ -1,5 +1,5 @@
 import * as pageBuilder from './pageBuilder.mjs';
-import * as localStorage from './localStorage.mjs';
+import * as basketFunc from './basketFunctionality.mjs';
 
 export function getProductId() {
   let itemId = window.location.search;
@@ -8,16 +8,6 @@ export function getProductId() {
   itemId = itemId.split(':');
   itemId = itemId[1];
   return itemId;
-}
-
-function addToBasketListener() {
-  const addToBasket = document.querySelector('.addItemToBasketButton');
-  const id = addToBasket.id;
-  console.log('test');
-  console.log(addToBasket);
-  addToBasket.addEventListener('click', () => {
-    localStorage.addToBasket(id);
-  });
 }
 
 function buildItem(id, description, image, price, stock) {
@@ -45,7 +35,7 @@ function buildItem(id, description, image, price, stock) {
 
   pageBuilder.basketQuantityFieldButtons(itemDetailQuantity);
   pageBuilder.addQuantityButtonListeners();
-  addToBasketListener();
+  basketFunc.addToBasketListener();
 }
 
 async function addItem() {

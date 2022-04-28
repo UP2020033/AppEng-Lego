@@ -1,29 +1,11 @@
 import * as pageBuilder from './pageBuilder.mjs';
+import * as basketFunc from './basketFunctionality.mjs';
 
 pageBuilder.buildBasketPage();
 
-async function findBasketItems() {
-  const basketItemsArr = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    let basketItem = localStorage.getItem(localStorage.key(i));
-    basketItem = JSON.parse(basketItem);
-    // https://stackoverflow.com/questions/3138564/looping-through-localstorage-in-html5-and-javascript -- loop through local storage
-    const response = await fetch(`/getItemById/${basketItem.product_id}`);
-    const item = response.json();
-    await item.then(obj => {
-      for (const item of obj) {
-        basketItemsArr.push(item);
-      }
-    });
-  }
-  console.log(basketItemsArr);
-  return basketItemsArr;
-}
-
-
 // console.log(await findBasketItems());
 async function displayBasketItems() {
-  const basketItems = await findBasketItems();
+  const basketItems = await basketFunc.findBasketItems();
   console.log(basketItems);
   for (const param of basketItems) {
     addBasketItems(param.product_description, param.product_image_link, param.product_price);
@@ -31,7 +13,6 @@ async function displayBasketItems() {
     // console.log(basketItems);
   }
 }
-
 
 function addBasketItems(description, image, price) {
   const basketItemContainer = document.querySelector('.basketItemContainer');

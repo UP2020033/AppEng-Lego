@@ -1,4 +1,5 @@
 import * as pageBulder from './pageBuilder.mjs';
+import * as basketAdd from './basketFunctionality.mjs';
 
 // Add container div for Shop page
 
@@ -98,7 +99,6 @@ async function getItems() {
   console.log(data);
   return data;
 }
-
 
 function addTiles() {
   const data = getItems();
