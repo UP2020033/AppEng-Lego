@@ -8,16 +8,17 @@ async function displayBasketItems() {
   const basketItems = await basketFunc.findBasketItems();
   console.log(basketItems);
   for (const param of basketItems) {
-    addBasketItems(param.product_description, param.product_image_link, param.product_price);
+    addBasketItems(param.product_id, param.product_description, param.product_image_link, param.product_price);
     console.log(param);
     // console.log(basketItems);
   }
 }
 
-function addBasketItems(description, image, price) {
+function addBasketItems(id, description, image, price) {
   const basketItemContainer = document.querySelector('.basketItemContainer');
-  const basketItem = pageBuilder.createDiv('basketItem');
+  const basketItem = pageBuilder.createDiv('basketItem', `item:${id}`);
   const imageContainer = pageBuilder.createDiv('imageContainer');
+
   console.log(basketItem);
   basketItemContainer.append(basketItem);
   basketItem.append(imageContainer);
@@ -38,8 +39,15 @@ function addBasketItems(description, image, price) {
   const basketQuantityFieldContainer = pageBuilder.createDiv('basketQuantityFieldContainer');
   basketItem.append(basketQuantityFieldContainer);
 
+  const removeItemButtonContainer = pageBuilder.createDiv('removeBasketItemContainer');
+  const removeItemButton = pageBuilder.createButton(`remove:${id}`, 'removeBasketItem', 'Remove');
+  basketItem.append(removeItemButtonContainer);
+  removeItemButtonContainer.append(removeItemButton);
+  console.log(removeItemButton.parentElement.parentElement);
+
   pageBuilder.basketQuantityFieldButtons(basketQuantityFieldContainer);
-  pageBuilder.addQuantityButtonListeners();
+  basketFunc.addQuantityButtonListeners();
+  basketFunc.removeItemFromBasket();
 }
 
 function addCheckoutDetails() {

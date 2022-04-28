@@ -483,8 +483,8 @@ a:hover {
 }
 
 .basketImg {
-    width: 175px;
-    height: 175px;
+    width: 150px;
+    height: 150px;
 }
 
 .basketCheckoutContainer {
@@ -556,4 +556,15 @@ a:hover {
     background-color: #AFD5EB;
     cursor: hand;
     cursor: pointer;
+}
+
+.removeBasketItemContainer {
+    margin-top: 30px;
+}
+
+.removeBasketItem {
+    margin-top: 20px;
+    margin-left: 100px;
+    width: 75px;
+    height: 50px;
 }

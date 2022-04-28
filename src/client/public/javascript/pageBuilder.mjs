@@ -1,11 +1,10 @@
 // functions to create different elements - saves me repeating some code..
 
-// functions to create different elements - saves me repeating some code..
-
-export function createDiv(divClass) {
-  const newBar = document.createElement('div');
-  newBar.className = divClass;
-  return newBar;
+export function createDiv(divClass, id) {
+  const newDiv = document.createElement('div');
+  newDiv.className = divClass;
+  newDiv.id = id;
+  return newDiv;
 }
 
 export function createHyperlink(text, link) {
@@ -89,32 +88,6 @@ export function basketQuantityFieldButtons(parent) {
   parent.append(minusButton);
   parent.append(quantityField);
   parent.append(additionButton);
-}
-
-// Adding basket
-
-
-// Adding event listeners for the buttons to adjust the item quantity selector.
-
-export function addQuantityButtonListeners() {
-  const addButton = document.querySelector('#addButton');
-  const minusButton = document.querySelector('#minusButton');
-  const quantityField = document.querySelector('#quantityField');
-
-  addButton.addEventListener('click', event => {
-    event.preventDefault();
-    const currentValue = Number(quantityField.value) || 0;
-    quantityField.value = currentValue + 1;
-  });
-
-  minusButton.addEventListener('click', event => {
-    event.preventDefault();
-    const currentValue = Number(quantityField.value) || 0;
-    if (currentValue === 0 || currentValue === 1) {
-      console.log('Value already 0, no subtracting!');
-    } else quantityField.value = currentValue - 1;
-  });
-  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }
 
 // Appending the necessary elements to their parents
