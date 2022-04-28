@@ -7,17 +7,15 @@ export function addToBasket(productId) {
     product_id: itemId,
     quantity: quantityValue,
   };
-
+  console.log(window.location);
   localStorage.setItem(itemId, JSON.stringify(itemToAdd));
   console.log(quantityValue);
 }
 
 export function addToBasketListener() {
-  const addBasket = document.querySelector('.addItemToBasketButton');
-  const id = addBasket.id;
-  console.log('test');
-  console.log(addToBasket);
-  addBasket.addEventListener('click', () => {
+  const addToBasketButton = document.querySelector('.addItemToBasketButton');
+  const id = addToBasketButton.id;
+  addToBasketButton.addEventListener('click', () => {
     addToBasket(id);
   });
 }
@@ -43,4 +41,27 @@ export async function findBasketItems() {
   }
   console.log(basketItemsArr);
   return basketItemsArr;
+}
+
+// Adding event listeners for the buttons to adjust the item quantity selector.
+
+export function addQuantityButtonListeners() {
+  const addButton = document.querySelector('#addButton');
+  const minusButton = document.querySelector('#minusButton');
+  const quantityField = document.querySelector('#quantityField');
+
+  addButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    quantityField.value = currentValue + 1;
+  });
+
+  minusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    if (currentValue === 0 || currentValue === 1) {
+      console.log('Value already 0, no subtracting!');
+    } else quantityField.value = currentValue - 1;
+  });
+  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }

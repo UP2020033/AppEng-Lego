@@ -1,5 +1,5 @@
 import * as pageBulder from './pageBuilder.mjs';
-import * as basketAdd from './basketFunctionality.mjs';
+import * as basketFunc from './basketFunctionality.mjs';
 
 // Add container div for Shop page
 
@@ -78,9 +78,12 @@ function buildTile(id, description, image, price) {
   itemPrice.appendChild(itemPriceText);
 
   const addToBasket = pageBulder.createDiv('addItemToBasket');
-  const addToBasketText = pageBulder.createButton(`button:${id}`, 'addItemToBasketButton', 'Add to Basket');
+  const addToBasketButton = pageBulder.createButton(`button:${id}`, 'addItemToBasketButton', 'Add to Basket');
   newItem.appendChild(addToBasket);
-  addToBasket.appendChild(addToBasketText);
+  addToBasket.appendChild(addToBasketButton);
+
+  basketFunc.addToBasketListener();
+
 
   newItemDesc.addEventListener('click', () => {
     document.location.href = `http://localhost:8080/item/?product_id:${id}`;
@@ -112,5 +115,9 @@ function addTiles() {
   });
 }
 
-addShopContent();
-addTiles();
+function init() {
+  addShopContent();
+  addTiles();
+}
+
+window.addEventListener('load', init);
