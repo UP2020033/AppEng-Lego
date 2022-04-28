@@ -61,7 +61,7 @@ export function createQuantityField(inputType, id, defaultValue) {
 
 export function addNavBarEventListeners() {
   const navElems = document.querySelectorAll('.navLink');
-  console.log(navElems);
+
   for (const link of navElems) {
     if (link.id === 'homeLink') {
       link.addEventListener('click', () => {
@@ -139,7 +139,6 @@ export function addMainNavBar() {
   document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'navLink', 'basket'));
   document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
   const div = document.querySelector('.basketDiv');
-  console.log(div.childNodes);
 }
 
 export function addBottomNavBar() {

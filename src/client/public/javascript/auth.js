@@ -49,7 +49,6 @@ function logout() {
 // check for the code and state parameters from Auth0 login redirect
 async function handleAuth0Redirect() {
   const isAuthenticated = await auth0.isAuthenticated();
-  console.log(auth0);
   if (isAuthenticated) return;
 
   const query = window.location.search;
