@@ -73,9 +73,15 @@ export function addQuantityButtonListeners() {
   // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
 }
 
-export function removeItemFromBasket(id) {
+export function removeItemFromBasket() {
   const removeButton = document.querySelector('.removeBasketItem');
-  // const item = document.querySelector('');
-  // console.log(item);
+  const itemId = removeButton.id.split(':')[1];
+  console.log(itemId);
+  const parentElem = document.getElementById(`item:${itemId}`);
+  console.log(parentElem);
+
+  parentElem.remove();
+
+  localStorage.removeItem(itemId);
   console.log(removeButton);
 }
