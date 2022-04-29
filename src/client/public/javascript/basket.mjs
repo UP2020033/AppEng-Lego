@@ -52,10 +52,13 @@ function addBasketItems(id, description, image, price) {
 }
 
 function addCheckoutDetails() {
+  const totalPrice = checkout.findBasketTotalPrice();
+  const totalQuantity = checkout.findBasketItemQuantity();
+
   const orderDetails = pageBuilder.createDiv('orderDetailsTitleContainer');
   const orderDetailsText = pageBuilder.createParagraph('Order Summary', 'orderDetailsTitle', null);
-  const orderDetailsQuantityText = pageBuilder.createParagraph('Total number of items:', 'basketQuantityText', null);
-  const orderDetailsCostText = pageBuilder.createParagraph('Subtotal: £20.00', 'basketTotalPrice', null);
+  const orderDetailsQuantityText = pageBuilder.createParagraph(`Total number of items:${totalQuantity}`, 'basketQuantityText', null);
+  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${totalPrice}`, 'basketTotalPrice', null);
 
   const checkoutContainer = document.querySelector('.basketCheckoutContainer');
 

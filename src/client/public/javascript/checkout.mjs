@@ -6,11 +6,9 @@ export function findBasketItemQuantity() {
 
     const itemQuantity = basketItem.quantity;
     totalQuantity = totalQuantity + Number(itemQuantity);
-
-    console.log(totalQuantity);
-    console.log(itemQuantity);
   }
   console.log(totalQuantity);
+  return totalQuantity;
 }
 
 export async function findBasketTotalPrice() {
@@ -23,7 +21,6 @@ export async function findBasketTotalPrice() {
     const quantity = basketItem.quantity;
 
     const response = await fetch(`/getItemPrice/${basketItem.product_id}`);
-    console.log(response);
     const price = new Promise((resolve, reject) => {
       try {
         response.json()
@@ -36,8 +33,6 @@ export async function findBasketTotalPrice() {
       }
     });
     const itemPrice = await price;
-    console.log(itemPrice);
-    console.log(quantity);
     totalPrice = totalPrice + itemPrice * quantity;
     console.log(totalPrice);
   }
