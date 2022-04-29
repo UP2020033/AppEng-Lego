@@ -1,4 +1,4 @@
-const dbConnect = require('../../connectDB.js');
+const dbConnect = require('../../dbConnect.js');
 const pgtools = require('pgtools');
 const config = require('../config');
 const fs = require('fs');

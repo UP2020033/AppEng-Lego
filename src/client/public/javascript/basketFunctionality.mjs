@@ -7,7 +7,7 @@ export function addToBasket(productId) {
   if (window.location.href === 'http://localhost:8080/store/') {
     itemToAdd = {
       product_id: itemId,
-      quantity_id: 1,
+      quantity: 1,
     };
   } else {
     const quantityValue = quantityField.value;

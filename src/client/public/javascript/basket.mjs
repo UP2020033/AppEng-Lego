@@ -1,5 +1,6 @@
 import * as pageBuilder from './pageBuilder.mjs';
 import * as basketFunc from './basketFunctionality.mjs';
+import * as checkout from './checkout.mjs';
 
 pageBuilder.buildBasketPage();
 
@@ -75,6 +76,10 @@ function init() {
   displayBasketItems();
   addCheckoutDetails();
 }
+
+checkout.findBasketItemQuantity();
+checkout.findBasketTotalPrice();
+checkout.findBasketTotalPrice();
 
 
 window.addEventListener('load', init);
