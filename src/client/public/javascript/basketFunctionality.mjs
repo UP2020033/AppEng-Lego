@@ -58,16 +58,19 @@ export async function findBasketItems() {
 }
 
 function basketUpdate(id) {
+  let itemUpdate = {};
+
   let basketItemCount = localStorage.getItem(id);
-  console.log(basketItemCount);
+  basketItemCount = JSON.parse(basketItemCount);
   basketItemCount = basketItemCount.quantity;
-  console.log(basketItemCount);
+  const newBasketCount = basketItemCount + 1;
 
+  itemUpdate = {
+    product_id: id.toString(),
+    quantity: newBasketCount,
+  };
 
-  // let basketItemCount = localStorage.getItem(id);
-  // basketItemCount = JSON.parse(basketItemCount);
-  // console.log(basketItemCount);
-  // basketItemCount = basketItemCount.quantity;
+  localStorage.setItem(id, JSON.stringify(itemUpdate));
 }
 
 function addBasketPageEventListeners(id) {
@@ -79,7 +82,7 @@ function addBasketPageEventListeners(id) {
     event.preventDefault();
     const currentValue = Number(quantityField.value) || 0;
     quantityField.value = currentValue + 1;
-    console.log(basketItemCount);
+    basketUpdate(id);
   });
   minusButton.addEventListener('click', event => {
     event.preventDefault();
@@ -88,6 +91,7 @@ function addBasketPageEventListeners(id) {
       console.log('Value already 0, no subtracting!');
     } else quantityField.value = currentValue - 1;
   });
+  // Interpreted from: (Finesse, 2018)
 }
 
 function addItemToBasketPageEventListeners() {
@@ -108,6 +112,7 @@ function addItemToBasketPageEventListeners() {
       console.log('Value already 0, no subtracting!');
     } else quantityField.value = currentValue - 1;
   });
+  // Interpreted from: (Finesse, 2018)
 }
 
 // Adding event listeners for the buttons to adjust the item quantity selector.
