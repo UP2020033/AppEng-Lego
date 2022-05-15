@@ -51,14 +51,29 @@ function addBasketItems(id, description, image, price) {
   removeItemButton.addEventListener('click', basketFunc.removeItemFromBasket);
 }
 
-function addCheckoutDetails() {
+async function addCheckoutDetails() {
   const totalPrice = checkout.findBasketTotalPrice();
+  const getPrice = new Promise((resolve, reject) => {
+    try {
+      totalPrice.then(finalPrice => {
+        console.log(finalPrice);
+        resolve(finalPrice);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+
+  const finalPrice = await getPrice;
+  console.log(totalPrice);
+  console.log(getPrice);
+
   const totalQuantity = checkout.findBasketItemQuantity();
 
   const orderDetails = pageBuilder.createDiv('orderDetailsTitleContainer');
   const orderDetailsText = pageBuilder.createParagraph('Order Summary', 'orderDetailsTitle', null);
   const orderDetailsQuantityText = pageBuilder.createParagraph(`Total number of items:${totalQuantity}`, 'basketQuantityText', null);
-  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${totalPrice}`, 'basketTotalPrice', null);
+  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${finalPrice}`, 'basketTotalPrice', null);
 
   const checkoutContainer = document.querySelector('.basketCheckoutContainer');
 
