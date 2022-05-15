@@ -384,7 +384,7 @@ a:hover {
     margin-top: 50px;
 }
 
-#quantityField {
+.quantityField {
     height: 44px;
     width: 92px;
     text-align: center;

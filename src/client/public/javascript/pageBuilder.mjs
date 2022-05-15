@@ -48,11 +48,12 @@ export function createSearchField(text, id, name) {
   return searchField;
 }
 
-export function createQuantityField(inputType, id, defaultValue) {
+export function createQuantityField(inputType, id, defaultValue, className) {
   const inputField = document.createElement('input');
   inputField.type = inputType;
   inputField.value = defaultValue;
   inputField.id = id;
+  inputField.className = className;
   return inputField;
 }
 
@@ -83,14 +84,14 @@ export function addNavBarEventListeners() {
 
 export function basketQuantityFieldButtons(parent, id) {
   const minusButton = createButton('minusButton', 'minusButton', '-');
-  const quantityField = createQuantityField('number', 'quantityField', '1');
+  const quantityField = createQuantityField('number', `quantityField:${id}`, '1', 'quantityField');
   const additionButton = createButton('addButton', 'addButton', '+');
 
   if (id === undefined) {
     console.log('buttons are fine.');
   } else {
     minusButton.id = `minusButton:${id}`;
-    additionButton.id = `additionButton:${id}`;
+    additionButton.id = `addButton:${id}`;
   }
 
   parent.append(minusButton);

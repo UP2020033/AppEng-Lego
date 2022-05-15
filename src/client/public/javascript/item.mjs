@@ -36,7 +36,7 @@ function buildItem(id, description, image, price, stock) {
   itemAddToBasket.append(addToBasket);
 
   pageBuilder.basketQuantityFieldButtons(itemDetailQuantity);
-  basketFunc.addQuantityButtonListeners();
+  basketFunc.addQuantityButtonListeners(id);
   basketFunc.addToBasketListener(addToBasket);
 }
 

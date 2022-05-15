@@ -1,7 +1,7 @@
 // addToBasket adds the relevant items to localStorage
 
 export function addToBasket(productId) {
-  const quantityField = document.querySelector('#quantityField');
+  const quantityField = document.querySelector('.quantityField');
   // Taking the element containing productId and splitting it to get the id only
   const itemId = productId.split(':')[1];
   console.log(window.location.href);
@@ -57,12 +57,43 @@ export async function findBasketItems() {
   return basketItemsArr;
 }
 
-// Adding event listeners for the buttons to adjust the item quantity selector.
+function basketUpdate(id) {
+  let basketItemCount = localStorage.getItem(id);
+  console.log(basketItemCount);
+  basketItemCount = basketItemCount.quantity;
+  console.log(basketItemCount);
 
-export function addQuantityButtonListeners() {
-  const addButton = document.querySelector('.addButton');
-  const minusButton = document.querySelector('.minusButton');
-  const quantityField = document.querySelector('#quantityField');
+
+  // let basketItemCount = localStorage.getItem(id);
+  // basketItemCount = JSON.parse(basketItemCount);
+  // console.log(basketItemCount);
+  // basketItemCount = basketItemCount.quantity;
+}
+
+function addBasketPageEventListeners(id) {
+  const addButton = document.getElementById(`addButton:${id}`);
+  const minusButton = document.getElementById(`minusButton:${id}`);
+  const quantityField = document.getElementById(`quantityField:${id}`);
+
+  addButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    quantityField.value = currentValue + 1;
+    console.log(basketItemCount);
+  });
+  minusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(quantityField.value) || 0;
+    if (currentValue === 0 || currentValue === 1) {
+      console.log('Value already 0, no subtracting!');
+    } else quantityField.value = currentValue - 1;
+  });
+}
+
+function addItemToBasketPageEventListeners() {
+  const addButton = document.querySelector('#addButton');
+  const minusButton = document.querySelector('#minusButton');
+  const quantityField = document.querySelector('.quantityField');
 
   addButton.addEventListener('click', event => {
     event.preventDefault();
@@ -77,7 +108,17 @@ export function addQuantityButtonListeners() {
       console.log('Value already 0, no subtracting!');
     } else quantityField.value = currentValue - 1;
   });
-  // Interpreted from: https://stackoverflow.com/questions/52125163/how-to-create-a-minus-and-plus-button-to-update-a-field
+}
+
+// Adding event listeners for the buttons to adjust the item quantity selector.
+
+export function addQuantityButtonListeners(id) {
+  if (window.location.href === 'http://localhost:8080/basket/') {
+    addBasketPageEventListeners(id);
+  // Interpreted from: (Finesse, 2018)
+  } else {
+    addItemToBasketPageEventListeners(id);
+  }
 }
 
 export function removeItemFromBasket() {

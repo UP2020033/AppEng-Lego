@@ -13,4 +13,3 @@ Flaschen, M. (2010, June 29). Answer to ‘Looping through localStorage in HTML5
 Node.js, Express.js, and PostgreSQL: CRUD REST API example. (2020, December 23). LogRocket Blog. https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
 
 Simple Apps need APIs. (2022). [JavaScript]. University of Portsmouth, School of Computing. https://github.com/portsoc/staged-simple-message-board (Original work published 2020)
-

@@ -51,7 +51,7 @@ function addBasketItems(id, description, image, price) {
   console.log(removeItemButton.parentElement.parentElement);
 
   pageBuilder.basketQuantityFieldButtons(basketQuantityFieldContainer, id);
-  basketFunc.addQuantityButtonListeners('addButton', 'minusButton');
+  basketFunc.addQuantityButtonListeners(id);
   removeItemButton.addEventListener('click', basketFunc.removeItemFromBasket);
 }
 
