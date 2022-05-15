@@ -5,8 +5,6 @@ export function addToBasket(productId) {
   const itemId = productId.split(':')[1];
   console.log(window.location.href);
 
-  console.log('penis');
-
   let itemToAdd = {};
   if (window.location.pathname === '/store/') {
     itemToAdd = {
@@ -132,7 +130,7 @@ export function addQuantityButtonListeners(id) {
   }
 }
 
-export function removeItemFromBasket(id) {
+export function removeItemFromBasket() {
   const removeButton = document.querySelector('.removeBasketItem');
   const itemId = removeButton.id.split(':')[1];
   console.log(itemId);
