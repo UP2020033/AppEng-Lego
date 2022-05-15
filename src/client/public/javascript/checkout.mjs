@@ -1,9 +1,10 @@
 export function findBasketItemQuantity() {
   let totalQuantity = 0;
+  // Loop through localStorage, take the quantity property value in the object and add it to the total quantity in each interation
   for (let i = 0; i < localStorage.length; i++) {
     let basketItem = localStorage.getItem(localStorage.key(i));
     basketItem = JSON.parse(basketItem);
-
+    // (Flaschen, 2010)
     const itemQuantity = basketItem.quantity;
     totalQuantity = totalQuantity + Number(itemQuantity);
   }
@@ -17,10 +18,11 @@ export async function findBasketTotalPrice() {
   for (let i = 0; i < localStorage.length; i++) {
     let basketItem = localStorage.getItem(localStorage.key(i));
     basketItem = JSON.parse(basketItem);
-    // https://stackoverflow.com/questions/3138564/looping-through-localstorage-in-html5-and-javascript -- loop through local storage
+    // (Flaschen, 2010)
     const quantity = basketItem.quantity;
 
     const response = await fetch(`/getItemPrice/${basketItem.product_id}`);
+    // reponse returns a promise, adding a new promise to resolve it
     const price = new Promise((resolve, reject) => {
       try {
         response.json()
@@ -32,6 +34,7 @@ export async function findBasketTotalPrice() {
         reject(err);
       }
     });
+    // price needs to be awaited, as the code was being executed before I resolved the promise above
     const itemPrice = await price;
     totalPrice = totalPrice + itemPrice * quantity;
     console.log(totalPrice);

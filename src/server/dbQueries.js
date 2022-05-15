@@ -1,3 +1,5 @@
+// I wrote the code myself, but // Ideas from (Node.Js, Express.Js, and PostgreSQL, 2020)
+
 const { client } = require('./dbConnect');
 
 const getItems = (req, res) => {

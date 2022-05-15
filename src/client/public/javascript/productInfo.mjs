@@ -1,3 +1,5 @@
+// gets productId using the window location
+
 export function getProductId() {
   let itemId = window.location.search;
   console.log(itemId);

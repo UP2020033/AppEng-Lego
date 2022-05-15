@@ -1,4 +1,5 @@
 // functions to create different elements - saves me repeating some code..
+// I did attempt to create one function that did it all in one, but it looked messy
 
 export function createDiv(divClass, id) {
   const newDiv = document.createElement('div');
@@ -80,10 +81,17 @@ export function addNavBarEventListeners() {
 
 // Adding basket button for numerous pages.
 
-export function basketQuantityFieldButtons(parent) {
-  const minusButton = createButton('minusButton', 'button', '-');
+export function basketQuantityFieldButtons(parent, id) {
+  const minusButton = createButton('minusButton', 'minusButton', '-');
   const quantityField = createQuantityField('number', 'quantityField', '1');
-  const additionButton = createButton('addButton', 'button', '+');
+  const additionButton = createButton('addButton', 'addButton', '+');
+
+  if (id === undefined) {
+    console.log('buttons are fine.');
+  } else {
+    minusButton.id = `minusButton:${id}`;
+    additionButton.id = `additionButton:${id}`;
+  }
 
   parent.append(minusButton);
   parent.append(quantityField);

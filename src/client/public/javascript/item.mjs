@@ -10,6 +10,8 @@ export function getProductId() {
   return itemId;
 }
 
+// buildItem builds the item information for the 'addItem' function to utilise when looping through the items
+
 function buildItem(id, description, image, price, stock) {
   const imageContainer = document.querySelector('.imageContainerDiv');
   const itemImage = pageBuilder.createImage(`../public/images/${image}.jpg`, 'itemDetailsImage');
@@ -44,7 +46,7 @@ async function addItem() {
   const response = await fetch(`/getItemById/${itemId}`);
   const item = await response.json();
   console.log(item);
-
+  // looping through the array of objects returned from the API and building an item based on the content returned
   for (const param of item) {
     buildItem(param.product_id, param.product_description, param.product_image_link, param.product_price, param.stock_count);
   }

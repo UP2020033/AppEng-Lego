@@ -1,3 +1,6 @@
+
+// (Example of Authentication with Auth0, 2021/2021)
+
 async function fetchAuthConfig() {
   const response = await fetch('/auth-config');
   if (response.ok) {
@@ -21,6 +24,8 @@ async function initializeAuth0Client() {
 }
 
 // update the state of all authentication-related elements
+
+// ADD MORE HERE WITHIN THE IS AUTHENTICATED BIT
 async function updateAuthUI() {
   const isAuthenticated = await auth0.isAuthenticated();
 

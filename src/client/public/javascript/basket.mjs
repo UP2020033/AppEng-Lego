@@ -4,7 +4,9 @@ import * as checkout from './checkout.mjs';
 
 pageBuilder.buildBasketPage();
 
-// console.log(await findBasketItems());
+// displaybasketItems loops invokes the returned array of objects returned from findBasketItems and utilises the information.
+// it utilises the information returned from addBasketItems to display the necessary information.
+
 async function displayBasketItems() {
   const basketItems = await basketFunc.findBasketItems();
   console.log(basketItems);
@@ -14,6 +16,8 @@ async function displayBasketItems() {
     // console.log(basketItems);
   }
 }
+
+// addBasketItems adds the html elements required and gathers the information that is required to display on screen.
 
 function addBasketItems(id, description, image, price) {
   const basketItemContainer = document.querySelector('.basketItemContainer');
@@ -46,16 +50,19 @@ function addBasketItems(id, description, image, price) {
   removeItemButtonContainer.append(removeItemButton);
   console.log(removeItemButton.parentElement.parentElement);
 
-  pageBuilder.basketQuantityFieldButtons(basketQuantityFieldContainer);
-  basketFunc.addQuantityButtonListeners();
+  pageBuilder.basketQuantityFieldButtons(basketQuantityFieldContainer, id);
+  basketFunc.addQuantityButtonListeners('addButton', 'minusButton');
   removeItemButton.addEventListener('click', basketFunc.removeItemFromBasket);
 }
 
+// Adds the checkout information and required by invoking the necessary functins to get the price and quantity.
+
 async function addCheckoutDetails() {
-  const totalPrice = checkout.findBasketTotalPrice();
+  const getTotalPrice = checkout.findBasketTotalPrice();
+  // getTotalPrice returns a promise for some reason, using a new promise to resolve it
   const getPrice = new Promise((resolve, reject) => {
     try {
-      totalPrice.then(finalPrice => {
+      getTotalPrice.then(finalPrice => {
         console.log(finalPrice);
         resolve(finalPrice);
       });
@@ -65,7 +72,9 @@ async function addCheckoutDetails() {
   });
 
   const finalPrice = await getPrice;
-  console.log(totalPrice);
+  const finalPriceFixed = finalPrice.toFixed(2);
+  // (admin, 2021)
+  console.log(finalPriceFixed);
   console.log(getPrice);
 
   const totalQuantity = checkout.findBasketItemQuantity();
@@ -73,7 +82,7 @@ async function addCheckoutDetails() {
   const orderDetails = pageBuilder.createDiv('orderDetailsTitleContainer');
   const orderDetailsText = pageBuilder.createParagraph('Order Summary', 'orderDetailsTitle', null);
   const orderDetailsQuantityText = pageBuilder.createParagraph(`Total number of items:${totalQuantity}`, 'basketQuantityText', null);
-  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${finalPrice}`, 'basketTotalPrice', null);
+  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${finalPriceFixed}`, 'basketTotalPrice', null);
 
   const checkoutContainer = document.querySelector('.basketCheckoutContainer');
 

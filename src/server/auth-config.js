@@ -1,3 +1,4 @@
+// (Example of Authentication with Auth0, 2021/2021)
 
 module.exports = {
   domain: 'dev-q2za4ish.us.auth0.com',

@@ -1,6 +1,6 @@
 CREATE TABLE customer (
     customer_id SERIAL PRIMARY KEY,
-    email_address VARCHAR(80) NOT NULL
+    email_address UNIQUE VARCHAR(80) NOT NULL
 );
 
 CREATE TABLE orders (
