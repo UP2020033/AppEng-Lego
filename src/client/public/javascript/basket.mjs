@@ -58,31 +58,15 @@ function addBasketItems(id, description, image, price) {
 // Adds the checkout information and required by invoking the necessary functins to get the price and quantity.
 
 async function addCheckoutDetails() {
-  const getTotalPrice = checkout.findBasketTotalPrice();
-  // getTotalPrice returns a promise for some reason, using a new promise to resolve it
-  const getPrice = new Promise((resolve, reject) => {
-    try {
-      getTotalPrice.then(finalPrice => {
-        console.log(finalPrice);
-        resolve(finalPrice);
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-  const finalPrice = await getPrice;
-  const finalPriceFixed = finalPrice.toFixed(2);
-  // (admin, 2021)
-  console.log(finalPriceFixed);
-  console.log(getPrice);
+  const totalPrice = await checkout.getBasketTotalPrice();
+  console.log(totalPrice);
 
   const totalQuantity = checkout.findBasketItemQuantity();
 
   const orderDetails = pageBuilder.createDiv('orderDetailsTitleContainer');
   const orderDetailsText = pageBuilder.createParagraph('Order Summary', 'orderDetailsTitle', null);
   const orderDetailsQuantityText = pageBuilder.createParagraph(`Total number of items:${totalQuantity}`, 'basketQuantityText', null);
-  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${finalPriceFixed}`, 'basketTotalPrice', null);
+  const orderDetailsCostText = pageBuilder.createParagraph(`Subtotal: £${totalPrice}`, 'basketTotalPrice', null);
 
   const checkoutContainer = document.querySelector('.basketCheckoutContainer');
 

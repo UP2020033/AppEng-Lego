@@ -1,9 +1,12 @@
+import * as checkout from './checkout.mjs';
+
 // addToBasket adds the relevant items to localStorage
 
 export function addToBasket(productId) {
   const quantityField = document.querySelector('.quantityField');
   const itemId = productId.split(':')[1];
   console.log(window.location.href);
+  const data = JSON.parse(localStorage.getItem(itemId));
 
   let itemToAdd = {};
   if (window.location.pathname === '/store/') {
@@ -19,8 +22,6 @@ export function addToBasket(productId) {
       quantity: quantityValue,
     };
   }
-  const data = JSON.parse(localStorage.getItem(itemId));
-  console.log(data);
   if (data !== null) {
     console.log(itemToAdd.quantity);
     itemToAdd.quantity += data.quantity;
@@ -62,6 +63,12 @@ export async function findBasketItems() {
 }
 
 function basketUpdate(id) {
+  const basketQuantity = document.querySelector('.basketQuantityText');
+  const basketPrice = document.querySelector('.basketTotalPrice');
+  const totalQuantity = checkout.findBasketItemQuantity();
+  const itemPrice = checkout.findBasketTotalPrice();
+  console.log(basketPrice);
+  console.log(itemPrice);
   let itemUpdate = {};
 
   let basketItemCount = localStorage.getItem(id);
@@ -69,12 +76,14 @@ function basketUpdate(id) {
   basketItemCount = basketItemCount.quantity;
   const newBasketCount = basketItemCount + 1;
 
+  
+
   itemUpdate = {
     product_id: id.toString(),
     quantity: newBasketCount,
   };
-
   localStorage.setItem(id, JSON.stringify(itemUpdate));
+  basketQuantity.textContent = `Total number of items:${totalQuantity + 1}`;
 }
 
 function addBasketPageEventListeners(id) {

@@ -2,11 +2,12 @@ export function findBasketItemQuantity() {
   let totalQuantity = 0;
   // Loop through localStorage, take the quantity property value in the object and add it to the total quantity in each interation
   for (let i = 0; i < localStorage.length; i++) {
+    console.log(localStorage);
     let basketItem = localStorage.getItem(localStorage.key(i));
     basketItem = JSON.parse(basketItem);
     // (Flaschen, 2010)
     const itemQuantity = basketItem.quantity;
-    totalQuantity = totalQuantity + Number(itemQuantity);
+    totalQuantity = totalQuantity + parseInt(itemQuantity, 10);
   }
   console.log(totalQuantity);
   return totalQuantity;
@@ -36,9 +37,56 @@ export async function findBasketTotalPrice() {
     });
     // price needs to be awaited, as the code was being executed before I resolved the promise above
     const itemPrice = await price;
-    totalPrice = totalPrice + itemPrice * quantity;
+    totalPrice = totalPrice + (itemPrice * quantity);
     console.log(totalPrice);
   }
   console.log(totalPrice);
   return totalPrice;
 }
+
+export async function getBasketTotalPrice() {
+  const getTotalPrice = findBasketTotalPrice();
+  const getPrice = new Promise((resolve, reject) => {
+    try {
+      getTotalPrice.then(finalPrice => {
+        console.log(finalPrice);
+        resolve(finalPrice);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+  const finalPrice = await getPrice;
+  const finalPriceFixed = finalPrice.toFixed(2);
+  // (admin, 2021)
+  return finalPriceFixed;
+}
+
+export async function addToCheckout() {
+  const basketQuantity = document.querySelector('.basketQuantityText');
+  const basketPrice = document.querySelector('.basketTotalPrice');
+  let totalQuantity = findBasketItemQuantity();
+  const getTotalPrice = await getBasketTotalPrice();
+
+  totalQuantity = totalQuantity - 1;
+  console.log(basketQuantity);
+  basketQuantity.textContent = 'Total number of items:';
+  console.log(basketQuantity);
+  console.log(totalQuantity);
+  console.log(getTotalPrice);
+}
+
+// export async function removeFromCheckout() {
+//   const basketQuantity = document.querySelector('.basketQuantityText');
+//   const basketPrice = document.querySelector('.basketTotalPrice');
+//   let totalQuantity = findBasketItemQuantity();
+//   const getTotalPrice = await getBasketTotalPrice();
+
+//   totalQuantity = totalQuantity - 1;
+//   console.log(basketQuantity);
+//   basketQuantity.textContent = 'Total number of items:';
+//   console.log(basketQuantity);
+//   console.log(totalQuantity);
+//   console.log(getTotalPrice);
+// }
+// basketQuantity.text.replace(`Total number of items ${}`) =
