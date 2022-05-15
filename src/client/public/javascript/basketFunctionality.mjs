@@ -2,30 +2,36 @@
 
 export function addToBasket(productId) {
   const quantityField = document.querySelector('.quantityField');
-  // Taking the element containing productId and splitting it to get the id only
   const itemId = productId.split(':')[1];
   console.log(window.location.href);
 
-  // If the user is on the store, increment by 1 when clicking add to basket
-  // If they are not (they are in the item details page), increment by the value in the relevant quantity field
+  console.log('penis');
+
   let itemToAdd = {};
-  if (window.location.href === 'http://localhost:8080/store/') {
+  if (window.location.pathname === '/store/') {
     itemToAdd = {
       product_id: itemId,
       quantity: 1,
     };
   } else {
-    const quantityValue = quantityField.value;
+    console.log(window.location.pathname);
+    const quantityValue = parseInt(quantityField.value, 10);
     itemToAdd = {
       product_id: itemId,
       quantity: quantityValue,
     };
   }
-  // Add the item to local storage
-  localStorage.setItem(itemId, JSON.stringify(itemToAdd));
+  const data = JSON.parse(localStorage.getItem(itemId));
+  console.log(data);
+  if (data !== null) {
+    console.log(itemToAdd.quantity);
+    itemToAdd.quantity += data.quantity;
+    console.log(data.quantity);
+    console.log(itemToAdd.quantity);
+  }
   console.log(itemToAdd);
+  localStorage.setItem(itemId, JSON.stringify(itemToAdd));
 }
-
 
 export function addToBasketListener(button) {
   const id = button.id;
@@ -126,7 +132,7 @@ export function addQuantityButtonListeners(id) {
   }
 }
 
-export function removeItemFromBasket() {
+export function removeItemFromBasket(id) {
   const removeButton = document.querySelector('.removeBasketItem');
   const itemId = removeButton.id.split(':')[1];
   console.log(itemId);
