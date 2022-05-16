@@ -122,8 +122,6 @@ const updateStock = async (stockCount, productId) => {
   });
 };
 
-// const addOrderDetails = async ()
-
 module.exports = {
   getItems,
   getItemById,

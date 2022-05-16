@@ -62,13 +62,30 @@ export async function getBasketTotalPrice() {
   return finalPriceFixed;
 }
 
-function submitOrder() {
+export async function submitOrder() {
   for (let i = 0; i < localStorage.length; i++) {
     let basketItem = localStorage.getItem(localStorage.key(i));
     basketItem = JSON.parse(basketItem);
 
-    const basketQuantity = basketItem.quantity;
-    console.log(basketQuantity);
+    const productId = basketItem.product_id;
+    const response = await fetch(`/getItemStockCount/${productId}`);
+
+    const itemStockCount = await new Promise((resolve, reject) => {
+      try {
+        response.json()
+          .then(details => {
+            resolve(details);
+          });
+      } catch (err) {
+        reject(err);
+      }
+    });
+    console.log(itemStockCount);
+
+    const finalItemStockCount = itemStockCount[0].stock_count;
+    console.log(finalItemStockCount);
+
+    const itemQuantity = basketItem.quantity;
   }
 }
 
