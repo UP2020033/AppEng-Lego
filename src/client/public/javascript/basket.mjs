@@ -62,7 +62,7 @@ async function addCheckoutDetails() {
   console.log(totalPrice);
 
   const totalQuantity = checkout.findBasketItemQuantity();
-
+  console.log(totalQuantity);
   const orderDetails = pageBuilder.createDiv('orderDetailsTitleContainer');
   const orderDetailsText = pageBuilder.createParagraph('Order Summary', 'orderDetailsTitle', null);
   const orderDetailsQuantityText = pageBuilder.createParagraph(`Total number of items:${totalQuantity}`, 'basketQuantityText', null);

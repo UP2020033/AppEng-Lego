@@ -47,17 +47,21 @@ export function clearBasket() {
 export async function findBasketItems() {
   const basketItemsArr = [];
   for (let i = 0; i < localStorage.length; i++) {
+    console.log(typeof (localStorage.key(i)));
+    console.log(localStorage.key(i));
     let basketItem = localStorage.getItem(localStorage.key(i));
-    basketItem = JSON.parse(basketItem);
-    // (Flaschen, 2010) -- loop through local storage
-    const response = await fetch(`/getItemById/${basketItem.product_id}`);
-    const item = response.json();
-    await item.then(obj => {
-      for (const item of obj) {
-        basketItemsArr.push(item);
-      }
-    });
-  }
+    if (localStorage.key(i) !== 'userEmail') {
+      basketItem = JSON.parse(basketItem);
+      // (Flaschen, 2010) -- loop through local storage
+      const response = await fetch(`/getItemById/${basketItem.product_id}`);
+      const item = response.json();
+      await item.then(obj => {
+        for (const item of obj) {
+          basketItemsArr.push(item);
+        }
+      });
+    }
+}
   console.log(basketItemsArr);
   return basketItemsArr;
 }
