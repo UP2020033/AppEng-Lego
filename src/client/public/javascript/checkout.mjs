@@ -62,6 +62,17 @@ export async function getBasketTotalPrice() {
   return finalPriceFixed;
 }
 
+async function updateStock(data) {
+  const response = await fetch('/updateStock/', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return response.text();
+}
+
 export async function submitOrder() {
   for (let i = 0; i < localStorage.length; i++) {
     let basketItem = localStorage.getItem(localStorage.key(i));
@@ -80,12 +91,18 @@ export async function submitOrder() {
         reject(err);
       }
     });
-    console.log(itemStockCount);
-
     const finalItemStockCount = itemStockCount[0].stock_count;
-    console.log(finalItemStockCount);
-
     const itemQuantity = basketItem.quantity;
+    const updatedStockCount = (finalItemStockCount - itemQuantity);
+    console.log(finalItemStockCount);
+    console.log(itemQuantity);
+    console.log(updatedStockCount);
+
+    const data = {
+      stockCount: updatedStockCount,
+      productId,
+    };
+    updateStock(data);
   }
 }
 

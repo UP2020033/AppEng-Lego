@@ -15,7 +15,7 @@ function init() {
   server.App.get('/getItemStockCount/:id', dbQueries.getItemStockCount);
   server.App.post('/addUser', jsonParse, postRequest.addUser);
   server.App.post('/addOrder', jsonParse, postRequest.addOrder);
-  server.App.put('/addOrderDetails', jsonParse, postRequest.addOrderDetails);
+  server.App.post('/addOrderDetails', jsonParse, postRequest.addOrderDetails);
   server.App.put('/updateStock', jsonParse, putRequest.updateStock);
 }
 
