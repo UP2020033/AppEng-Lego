@@ -1,5 +1,42 @@
 # AppEngLegoSite
 
+## Setup and startup
+
+To setup the database for the lego site and start the server, run the below scripts in the terminal:
+
+npm run setup
+npm start
+
+## Design
+
+The design of the website is brief and was sketched on paper before coding it. It is simple as I am not the most creative when it comes to designing websites. Also, the website css is not complete and so therefore parts of the website do not look as good as they otherwise would have.
+
+## Implementation
+
+The website was built incrementally, there was not a specific method I took when coding it. I essentially broke the large problem down into smaller problems and did them all once at a time. Designing the website was initially done on paper as aforementioned. However, I did not take into account mobile compatability and focused on the core functionality instead. This proved to be a mistake as I did not fully complete mobile compatibility or compatibility of any sort.
+
+When programming the website, I used 
+
+## Known issues
+
+1. When the user clicks the '+' button in the basket page to add a higher number of items to the basket for that item. The cost is not updated in the order summary subtotal the first time the user clicks the button. I did not have the time to fix this, local storage is always updated when the user clicks the button, but the summary is not. I guess the user will get a free brick!
+
+2. When the user clicks the 'remove' button to remove an item from the basket, the item is removed from localStorage and the item is removed from the basket page. However, the summary is not updated to remove those items, refreshing the page does the trick but it is undesirable behaviour I would fix with more time.
+
+3. On the 'item details' page, clicking in the text box allows the user to add negative numbers into it and it breaks the quantity field. In future I will disable to ability to enter into it but again I have run out of time to fully fix this issue.
+
+4. The webpage is not very compatible with mobile, I coded the website whilst being a bit tunnelvisioned on functionality and getting it to work on my PC. This is something I regret and should have taken into account nearer the start of the journey. It was highlighted in a module last year but I had completely forgotten about it.
+
+## Future/unfinished work
+
+1. Currently, the user can login but there is no backend support for submitting orders, the database is there to be used and the API calls are there to add users to the database. Unfortunately however, I ran out of time to complete this functionality. The code is there from when I attempted this, some of it is commented out.
+
+2. Implementing a category filter and a search filter were one of my initial plans but I got stuck on the core functionalities and couldn't get around to doing these. The attempts at making a category filter list and search field are there to see.
+
+3. Wishlist option.
+
+4. Adding tests to check backend calls.
+
 ## Bibliography
 
 admin. (2021, May 11). Round to 2 decimal places in JavaScript. StackHowTo. https://stackhowto.com/round-to-2-decimal-places-in-javascript/
