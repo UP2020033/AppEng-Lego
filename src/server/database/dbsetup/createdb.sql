@@ -1,17 +1,13 @@
 CREATE TABLE customer (
     customer_id SERIAL PRIMARY KEY,
-    email_address UNIQUE VARCHAR(80) NOT NULL
+    email_address VARCHAR(80) NOT NULL UNIQUE
 );
 
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
-    delivery_address_line_1 VARCHAR(50) NOT NULL,
-    delivery_address_line_2 VARCHAR(50) NOT NULL,
-    delivery_city VARCHAR(50) NOT NULL,
-    delivery_county VARCHAR(25),
-    delivery_postcode VARCHAR(7),
     order_date DATE,
     order_cost VARCHAR(6),
+    order_status VARCHAR(20),
     customer_id INT REFERENCES customer(customer_id) NOT NULL
 );
 

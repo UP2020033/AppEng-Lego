@@ -1,3 +1,4 @@
+// (Connecting, n.d.)
 
 const config = require('./database/config');
 const { Client } = require('pg');
@@ -29,5 +30,3 @@ module.exports = {
   init,
   client,
 };
-
-// reference: https://node-postgres.com/features/connecting

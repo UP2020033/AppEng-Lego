@@ -62,13 +62,13 @@ export async function findBasketItems() {
   return basketItemsArr;
 }
 
-function basketUpdate(id) {
+async function basketUpdate(id) {
   const basketQuantity = document.querySelector('.basketQuantityText');
   const basketPrice = document.querySelector('.basketTotalPrice');
   const totalQuantity = checkout.findBasketItemQuantity();
-  const itemPrice = checkout.findBasketTotalPrice();
-  console.log(basketPrice);
-  console.log(itemPrice);
+  const totalPrice = await checkout.findBasketTotalPrice();
+  const finalPrice = totalPrice.toFixed(2);
+
   let itemUpdate = {};
 
   let basketItemCount = localStorage.getItem(id);
@@ -76,14 +76,13 @@ function basketUpdate(id) {
   basketItemCount = basketItemCount.quantity;
   const newBasketCount = basketItemCount + 1;
 
-  
-
   itemUpdate = {
     product_id: id.toString(),
     quantity: newBasketCount,
   };
   localStorage.setItem(id, JSON.stringify(itemUpdate));
   basketQuantity.textContent = `Total number of items:${totalQuantity + 1}`;
+  basketPrice.textContent = `Subtotal: £${finalPrice}`;
 }
 
 function addBasketPageEventListeners(id) {

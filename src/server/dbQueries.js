@@ -50,8 +50,67 @@ const getItemPrice = async (req, res) => {
     });
 };
 
+const addUser = async (emailAddress) => {
+  await client.query(`
+   INSERT INTO
+    customer
+      (email_address)
+    VALUES
+      ('${emailAddress}');`, (err, res) => {
+    if (err) {
+      throw (err);
+    }
+  });
+};
+
+const addOrder = async (orderDate, orderCost, orderStatus, customerId) => {
+  await client.query(`
+  INSERT INTO
+    orders
+      (order_date, order_cost, order_status, customer_id)
+    VALUES
+      ('${orderDate}', '${orderCost}', '${orderStatus}', '${customerId}');`, (err, res) => {
+    if (err) {
+      throw (err);
+    }
+  });
+};
+
+const addOrderDetails = async (quantity, orderId, productId) => {
+  await client.query(`
+  INSERT INTO
+    order_details
+      (quantity, order_id, product_id)
+    VALUES
+      ('${quantity}', '${orderId}', '${productId}');`, (err, res) => {
+    if (err) {
+      throw (err);
+    }
+  });
+};
+
+const updateStock = async (stockCount, productId) => {
+  await client.query(`
+  UPDATE
+    products
+  SET
+    stock_count = '${stockCount}'
+  WHERE
+    product_id = '${productId}';`, (err, res) => {
+    if (err) {
+      throw (err);
+    }
+  });
+};
+
+// const addOrderDetails = async ()
+
 module.exports = {
   getItems,
   getItemById,
   getItemPrice,
+  addUser,
+  addOrder,
+  addOrderDetails,
+  updateStock,
 };

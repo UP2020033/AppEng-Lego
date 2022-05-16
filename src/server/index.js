@@ -1,5 +1,5 @@
 const server = require('./webServer.js');
-const api = require('./api');
+const api = require('./api/api.js');
 const db = require('./dbConnect');
 
 // Initialising server, api and the database

@@ -4,9 +4,9 @@ SET datestyle = dmy;
 INSERT INTO customer (email_address) values ('testuser@test.com');
 
 -- Orders inserts
-INSERT INTO orders (delivery_address_line_1, delivery_address_line_2, delivery_city, delivery_county, delivery_postcode, order_date, order_cost, customer_id) VALUES ('5 Mill Close', 'Poynings', 'Brighton', 'West Sussex', 'BN457AF', '07/04/2022', '10.00', 1);
-INSERT INTO orders (delivery_address_line_1, delivery_address_line_2, delivery_city, delivery_county, delivery_postcode, order_date, order_cost, customer_id) VALUES ('5 Mill Close', 'Poynings', 'Brighton', 'West Sussex', 'BN457AF', '07/04/2022', '10.00', 1);
-INSERT INTO orders (delivery_address_line_1, delivery_address_line_2, delivery_city, delivery_county, delivery_postcode, order_date, order_cost, customer_id) VALUES ('5 Mill Close', 'Poynings', 'Brighton', 'West Sussex', 'BN457AF', '07/04/2022', '10.00', 1);
+INSERT INTO orders (order_date, order_cost, order_status, customer_id) VALUES ('07/04/2022', '10.00', 'Order submitted', 1);
+INSERT INTO orders (order_date, order_cost, order_status, customer_id) VALUES ('07/04/2022', '10.00', 'Order submitted', 1);
+INSERT INTO orders (order_date, order_cost, order_status, customer_id) VALUES ('07/04/2022', '10.00', 'Order submitted', 1);
 
 -- Products inserts
 -- Bricks
