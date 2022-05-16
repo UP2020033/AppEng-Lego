@@ -1,5 +1,9 @@
 # AppEngLegoSite
 
+## Introduction
+
+BlockZilla is a website that sells lego bricks.
+
 ## Setup and startup
 
 To setup the database for the lego site and start the server, run the below scripts in the terminal:
@@ -15,7 +19,27 @@ The design of the website is brief and was sketched on paper before coding it. I
 
 The website was built incrementally, there was not a specific method I took when coding it. I essentially broke the large problem down into smaller problems and did them all once at a time. Designing the website was initially done on paper as aforementioned. However, I did not take into account mobile compatability and focused on the core functionality instead. This proved to be a mistake as I did not fully complete mobile compatibility or compatibility of any sort.
 
-When programming the website, I used 
+The website is programmed using vanilla Javascript, which is a multi-paradigm programming language. I focused on making the code maintainable by adding numerous comments and by using block scope to the best of my ability. Modularisation was used where possibly too. One thing to note is that I use require for server imports and exports, this is because I wanted to implement testing and some research highlighted to me that ES6 is not highly compatible with JEST. The client side of the system uses ES6 however.
+
+The basket functionality was implemented using localStorage, this could have been executed in the database too. However, I wanted a mixture of client and server-side storage and I did not feel it was necessary to do it entirely in the database.
+
+The backend was implemented using a PostgreSQL database, I chose PostgreSQL as I have already learned PostgreSQL in other modules and I wanted to expand on my knowledge on it further. I wrote my own API calls following the CRUD methodology to interact between the database, server and client.
+
+## Features
+
+1. Clicking the product image or text takes you to the details page for that item.
+
+2. The user can add a single item to the basket using the 'store' page.
+
+3. The user can add multiple items to the basket using the 'item' page.
+
+4. The 'item' page contains a unique URL to the product it is highlighting.
+
+5. The user can login and logout.
+
+6. The user can add more of each product in the basket page.
+
+7. The user can submit the order and the stock will be updated with a confirmation message.
 
 ## Known issues
 
@@ -25,7 +49,7 @@ When programming the website, I used
 
 3. On the 'item details' page, clicking in the text box allows the user to add negative numbers into it and it breaks the quantity field. In future I will disable to ability to enter into it but again I have run out of time to fully fix this issue.
 
-4. The webpage is not very compatible with mobile, I coded the website whilst being a bit tunnelvisioned on functionality and getting it to work on my PC. This is something I regret and should have taken into account nearer the start of the journey. It was highlighted in a module last year but I had completely forgotten about it.
+4. The webpage is not very compatible with mobile, I coded the website whilst being a bit tunnel visioned on functionality and getting it to work on my PC. This is something I regret and should have taken into account nearer the start of the journey. It was highlighted in a module last year but I had completely forgotten about it.
 
 ## Future/unfinished work
 
