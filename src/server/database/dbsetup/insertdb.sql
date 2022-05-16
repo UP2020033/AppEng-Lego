@@ -101,6 +101,9 @@ INSERT INTO products (product_description, product_price, product_image_link, pr
 
 -- Sets
 
+-- Bonzai Tree
+INSERT INTO products (product_description, product_price, product_image_link, product_colour, product_category, product_theme, stock_count) VALUES ('Lego Bonzai Tree', '190.00', 'BonzaiTree', NULL, 'Set', NULL, 15);
+
 -- LOTR
 INSERT INTO products (product_description, product_price, product_image_link, product_colour, product_category, product_theme, stock_count) VALUES ('Uruk-Hai battle set', '100.00', 'Uruk-Hai', NULL, 'Set', 'Lord of the Rings', 1);
 INSERT INTO products (product_description, product_price, product_image_link, product_colour, product_category, product_theme, stock_count) VALUES ('Battle of Helms Deep set', '74.00', 'BattleOfHelmsDeep', NULL, 'Set', 'Lord of the Rings', 3);
