@@ -3,17 +3,15 @@ export function findBasketItemQuantity() {
   // Loop through localStorage, take the quantity property value in the object and add it to the total quantity in each interation
   for (let i = 0; i < localStorage.length; i++) {
     console.log(localStorage);
-    if (localStorage.key(i) !== 'userEmail') {
-      let basketItem = localStorage.getItem(localStorage.key(i));
-      basketItem = JSON.parse(basketItem);
-      // (Flaschen, 2010)
-      const itemQuantity = basketItem.quantity;
-      console.log(itemQuantity);
-      if (itemQuantity !== undefined) {
-        totalQuantity = totalQuantity + parseInt(itemQuantity, 10);
-      }
-      console.log(totalQuantity);
+    let basketItem = localStorage.getItem(localStorage.key(i));
+    basketItem = JSON.parse(basketItem);
+    // (Flaschen, 2010)
+    const itemQuantity = basketItem.quantity;
+    console.log(itemQuantity);
+    if (itemQuantity !== undefined) {
+      totalQuantity = totalQuantity + parseInt(itemQuantity, 10);
     }
+    console.log(totalQuantity);
   }
   console.log(totalQuantity);
   return totalQuantity;
@@ -23,30 +21,28 @@ export async function findBasketTotalPrice() {
   let totalPrice = 0;
 
   for (let i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i) !== 'userEmail') {
-      let basketItem = localStorage.getItem(localStorage.key(i));
-      basketItem = JSON.parse(basketItem);
-      // (Flaschen, 2010)
-      const quantity = basketItem.quantity;
+    let basketItem = localStorage.getItem(localStorage.key(i));
+    basketItem = JSON.parse(basketItem);
+    // (Flaschen, 2010)
+    const quantity = basketItem.quantity;
 
-      const response = await fetch(`/getItemPrice/${basketItem.product_id}`);
-      // reponse returns a promise, adding a new promise to resolve it
-      const price = new Promise((resolve, reject) => {
-        try {
-          response.json()
-            .then(details => {
-              const productPrice = details[0].product_price;
-              resolve(productPrice);
-            });
-        } catch (err) {
-          reject(err);
-        }
-      });
-      // price needs to be awaited, as the code was being executed before I resolved the promise above
-      const itemPrice = await price;
-      totalPrice = totalPrice + (itemPrice * quantity);
-      console.log(totalPrice);
-    }
+    const response = await fetch(`/getItemPrice/${basketItem.product_id}`);
+    // reponse returns a promise, adding a new promise to resolve it
+    const price = new Promise((resolve, reject) => {
+      try {
+        response.json()
+          .then(details => {
+            const productPrice = details[0].product_price;
+            resolve(productPrice);
+          });
+      } catch (err) {
+        reject(err);
+      }
+    });
+    // price needs to be awaited, as the code was being executed before I resolved the promise above
+    const itemPrice = await price;
+    totalPrice = totalPrice + (itemPrice * quantity);
+    console.log(totalPrice);
   }
   console.log(totalPrice);
   return totalPrice;
@@ -83,6 +79,18 @@ async function updateStock(data) {
   return response.text();
 }
 
+async function addOrder(data) {
+  // calling addOrder request in API
+  const response = await fetch('/addOrder/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return response.text;
+}
+
 export async function submitOrder() {
   for (let i = 0; i < localStorage.length; i++) {
     let basketItem = localStorage.getItem(localStorage.key(i));
@@ -110,11 +118,23 @@ export async function submitOrder() {
     console.log(itemQuantity);
     console.log(updatedStockCount);
 
-    const data = {
+    const stockUpdate = {
       stockCount: updatedStockCount,
       productId,
     };
-    updateStock(data);
+
+    const orderCost = await getBasketTotalPrice();
+    console.log(orderCost);
+
+    const order = {
+      orderDate: '16/05/2022',
+      orderCost: '10',
+      orderStatus: 'Order submitted',
+      customer_id: 'blah',
+    };
+
+    updateStock(stockUpdate);
+    addOrder();
   }
 }
 
