@@ -81,17 +81,17 @@ async function updateStock(data) {
   return response.text();
 }
 
-async function addOrder(data) {
-  // calling addOrder request in API
-  const response = await fetch('/addOrder/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  return response.text;
-}
+// async function addOrder(data) {
+//   // calling addOrder request in API
+//   const response = await fetch('/addOrder/', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(data),
+//   });
+//   return response.text;
+// }
 
 export async function submitOrder() {
   for (let i = 0; i < localStorage.length; i++) {

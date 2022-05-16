@@ -59,7 +59,7 @@ export async function findBasketItems() {
         basketItemsArr.push(item);
       }
     });
-}
+  }
   console.log(basketItemsArr);
   return basketItemsArr;
 }
