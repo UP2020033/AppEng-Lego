@@ -62,19 +62,31 @@ export async function getBasketTotalPrice() {
   return finalPriceFixed;
 }
 
-export async function addToCheckout() {
-  const basketQuantity = document.querySelector('.basketQuantityText');
-  const basketPrice = document.querySelector('.basketTotalPrice');
-  let totalQuantity = findBasketItemQuantity();
-  const getTotalPrice = await getBasketTotalPrice();
+function submitOrder() {
+  for (let i = 0; i < localStorage.length; i++) {
+    let basketItem = localStorage.getItem(localStorage.key(i));
+    basketItem = JSON.parse(basketItem);
 
-  totalQuantity = totalQuantity - 1;
-  console.log(basketQuantity);
-  basketQuantity.textContent = 'Total number of items:';
-  console.log(basketQuantity);
-  console.log(totalQuantity);
-  console.log(getTotalPrice);
+    const basketQuantity = basketItem.quantity;
+    console.log(basketQuantity);
+  }
 }
+
+submitOrder();
+
+// export async function addToCheckout() {
+//   const basketQuantity = document.querySelector('.basketQuantityText');
+//   const basketPrice = document.querySelector('.basketTotalPrice');
+//   let totalQuantity = findBasketItemQuantity();
+//   const getTotalPrice = await getBasketTotalPrice();
+
+//   totalQuantity = totalQuantity - 1;
+//   console.log(basketQuantity);
+//   basketQuantity.textContent = 'Total number of items:';
+//   console.log(basketQuantity);
+//   console.log(totalQuantity);
+//   console.log(getTotalPrice);
+// }
 
 // export async function removeFromCheckout() {
 //   const basketQuantity = document.querySelector('.basketQuantityText');

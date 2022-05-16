@@ -21,4 +21,5 @@ const addOrderDetails = async (req, res) => {
 module.exports = {
   addUser,
   addOrder,
+  addOrderDetails,
 };

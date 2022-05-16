@@ -12,6 +12,7 @@ function init() {
   server.App.get('/getItems', dbQueries.getItems);
   server.App.get('/getItemById/:id', dbQueries.getItemById);
   server.App.get('/getItemPrice/:id', dbQueries.getItemPrice);
+  server.App.get('/getItemStockCount/:id', dbQueries.getItemStockCount);
   server.App.post('/addUser', jsonParse, postRequest.addUser);
   server.App.post('/addOrder', jsonParse, postRequest.addOrder);
   server.App.put('/addOrderDetails', jsonParse, postRequest.addOrderDetails);

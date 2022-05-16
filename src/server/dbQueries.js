@@ -50,6 +50,25 @@ const getItemPrice = async (req, res) => {
     });
 };
 
+const getItemStockCount = async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  await client.query(`
+  SELECT
+    stock_count
+  FROM
+    products
+  WHERE
+    product_id = $1
+  `, [id])
+    .then((results) => {
+      res.status(200).json(results.rows);
+      console.log(results);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const addUser = async (emailAddress) => {
   await client.query(`
    INSERT INTO
@@ -109,6 +128,7 @@ module.exports = {
   getItems,
   getItemById,
   getItemPrice,
+  getItemStockCount,
   addUser,
   addOrder,
   addOrderDetails,
