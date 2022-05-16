@@ -1,3 +1,5 @@
+import * as basketFunc from './basketFunctionality.mjs';
+
 export function findBasketItemQuantity() {
   let totalQuantity = 0;
   // Loop through localStorage, take the quantity property value in the object and add it to the total quantity in each interation
@@ -126,15 +128,10 @@ export async function submitOrder() {
     const orderCost = await getBasketTotalPrice();
     console.log(orderCost);
 
-    const order = {
-      orderDate: '16/05/2022',
-      orderCost: '10',
-      orderStatus: 'Order submitted',
-      customer_id: 'blah',
-    };
-
     updateStock(stockUpdate);
-    addOrder();
+    basketFunc.clearBasket();
+    // addOrder();
+    document.location.href = 'http://localhost:8080/order';
   }
 }
 

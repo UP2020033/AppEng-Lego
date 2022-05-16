@@ -52,7 +52,9 @@ function addBasketItems(id, description, image, price) {
 
   pageBuilder.basketQuantityFieldButtons(basketQuantityFieldContainer, id);
   basketFunc.addQuantityButtonListeners(id);
-  removeItemButton.addEventListener('click', basketFunc.removeItemFromBasket);
+  removeItemButton.addEventListener('click', () => {
+    basketFunc.removeItemFromBasket(id);
+  });
 }
 
 // Adds the checkout information and required by invoking the necessary functins to get the price and quantity.
@@ -89,10 +91,5 @@ function init() {
   displayBasketItems();
   addCheckoutDetails();
 }
-
-checkout.findBasketItemQuantity();
-checkout.findBasketTotalPrice();
-checkout.findBasketTotalPrice();
-
 
 window.addEventListener('load', init);

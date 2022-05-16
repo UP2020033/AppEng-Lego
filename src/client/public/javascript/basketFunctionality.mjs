@@ -140,8 +140,8 @@ export function addQuantityButtonListeners(id) {
   }
 }
 
-export function removeItemFromBasket() {
-  const removeButton = document.querySelector('.removeBasketItem');
+export function removeItemFromBasket(id) {
+  const removeButton = document.getElementById(`remove:${id}`);
   const itemId = removeButton.id.split(':')[1];
   console.log(itemId);
   const parentElem = document.getElementById(`item:${itemId}`);

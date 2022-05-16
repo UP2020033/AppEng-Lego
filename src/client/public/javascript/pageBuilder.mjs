@@ -119,8 +119,6 @@ export function addMainNavBar() {
   document.querySelector('.searchDiv').appendChild(createSearchField('Search for an item...', 'search', 'search'));
   document.querySelector('.mainBarDiv').appendChild(createDiv('basketDiv'));
   document.querySelector('.basketDiv').appendChild(createImage('../public/images/shoppingcart.png', 'navLink', 'basket'));
-  document.querySelector('.basketDiv').appendChild(document.createTextNode('0'));
-  const div = document.querySelector('.basketDiv');
 }
 
 export function addBottomNavBar() {
