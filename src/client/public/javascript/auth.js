@@ -33,9 +33,25 @@ async function updateAuthUI() {
   document.getElementById('logout').disabled = !isAuthenticated;
 
   if (isAuthenticated) {
-    const user = await auth0.getUser();
-    const el = document.getElementById('greeting');
-    el.textContent = `Hello ${user.name} (${user.email})!`;
+    const currentUser = auth0.getUser();
+    currentUser.then(async (res) => {
+      console.log(res.email);
+      localStorage.setItem('userEmail', res.email);
+      const email = {
+        emailAddress: res.email,
+      };
+      try {
+        await fetch('/addUser/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(email),
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    });
   }
 }
 

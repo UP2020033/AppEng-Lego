@@ -77,7 +77,8 @@ const addUser = async (emailAddress) => {
     VALUES
       ('${emailAddress}');`, (err, res) => {
     if (err) {
-      throw (err);
+      console.log(err);
+      return (err);
     }
   });
 };

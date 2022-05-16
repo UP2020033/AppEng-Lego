@@ -46,6 +46,7 @@ export async function findBasketTotalPrice() {
 
 export async function getBasketTotalPrice() {
   const getTotalPrice = findBasketTotalPrice();
+  // resolve response from findBasketTotalPrice using a new promise
   const getPrice = new Promise((resolve, reject) => {
     try {
       getTotalPrice.then(finalPrice => {
@@ -63,6 +64,7 @@ export async function getBasketTotalPrice() {
 }
 
 async function updateStock(data) {
+  // calling updateStock request in API
   const response = await fetch('/updateStock/', {
     method: 'PUT',
     headers: {
@@ -91,9 +93,11 @@ export async function submitOrder() {
         reject(err);
       }
     });
+    // Taking the stock count from the database and subtracting the localstorage quantity count per item
     const finalItemStockCount = itemStockCount[0].stock_count;
     const itemQuantity = basketItem.quantity;
     const updatedStockCount = (finalItemStockCount - itemQuantity);
+
     console.log(finalItemStockCount);
     console.log(itemQuantity);
     console.log(updatedStockCount);
@@ -105,22 +109,6 @@ export async function submitOrder() {
     updateStock(data);
   }
 }
-
-submitOrder();
-
-// export async function addToCheckout() {
-//   const basketQuantity = document.querySelector('.basketQuantityText');
-//   const basketPrice = document.querySelector('.basketTotalPrice');
-//   let totalQuantity = findBasketItemQuantity();
-//   const getTotalPrice = await getBasketTotalPrice();
-
-//   totalQuantity = totalQuantity - 1;
-//   console.log(basketQuantity);
-//   basketQuantity.textContent = 'Total number of items:';
-//   console.log(basketQuantity);
-//   console.log(totalQuantity);
-//   console.log(getTotalPrice);
-// }
 
 // export async function removeFromCheckout() {
 //   const basketQuantity = document.querySelector('.basketQuantityText');
@@ -135,4 +123,3 @@ submitOrder();
 //   console.log(totalQuantity);
 //   console.log(getTotalPrice);
 // }
-// basketQuantity.text.replace(`Total number of items ${}`) =

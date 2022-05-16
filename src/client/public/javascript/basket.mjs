@@ -80,6 +80,8 @@ async function addCheckoutDetails() {
   checkoutContainer.append(orderDetailsCostText);
   checkoutContainer.append(checkoutButtonContainer);
   checkoutContainer.append(checkoutButton);
+
+  checkoutButton.addEventListener('click', checkout.submitOrder);
 }
 
 
